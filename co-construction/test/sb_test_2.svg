@@ -39,7 +39,7 @@
 <text id="subword__N_4" x="455.427" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
 <tspan   x="455.427" dy="8.33691">upos=PROPN</tspan>
 <tspan   x="455.427" dy="8.33691">lemma=Messi</tspan>
-<tspan   x="455.427" dy="8.33691">AttachTo=4@Rhap_D2003-128bis</tspan>
+<tspan   x="455.427" dy="8.33691">AttachTo=6@Rhap_D2003-128bis</tspan>
 <tspan   x="455.427" dy="8.33691">Gender[lex]=Unknown</tspan>
 <tspan   x="455.427" dy="8.33691">Overlap=Rhap_D2003-128bis</tspan>
 <tspan   x="455.427" dy="8.33691">__MISC__Rel=comp:obj</tspan>

@@ -17,7 +17,7 @@
 1	et	et	CCONJ	_	_	4	cc	_	Overlap=Rhap_D2003-128bis
 2	oui	oui	INTJ	_	_	4	discourse	_	Overlap=Rhap_D2003-128bis|SpaceAfter=No
 3	,	,	PUNCT	_	_	2	punct	_	Overlap=Rhap_D2003-128bis
-4	Messi	Messi	PROPN	_	_	0	root	_	AttachTo=4@Rhap_D2003-128bis|Gender[lex]=Unknown|Overlap=Rhap_D2003-128bis|Rel=comp:obj
+4	Messi	Messi	PROPN	_	_	0	root	_	AttachTo=6@Rhap_D2003-128bis|Gender[lex]=Unknown|Overlap=Rhap_D2003-128bis|Rel=comp:obj
 5	maintenant	maintenant	ADV	_	_	4	mod	_	SpaceAfter=No
 6	.	.	PUNCT	_	_	4	punct	_	_
 
