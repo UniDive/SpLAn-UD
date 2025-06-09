@@ -1,4 +1,6 @@
 import os, sys
+from termcolor import colored, cprint
+
 from grewpy import set_config, CorpusDraft, Corpus, Request, Graph, GRS
 from grewpy.graph import FsEdge
 
@@ -92,11 +94,11 @@ def check_input_data(corpus):
 		valid = True
 		if len(occs) > 0:
 			if valid:
-				print ("Cannot process data, there are inconsistent annotations:")
+				cprint ('Cannot process data, there are inconsistent annotations:', 'red')
 			valid = False
-			print (f'{len(occs)} times the unexpected request ---> {string_request}')
+			cprint (f'{len(occs)} times the unexpected request ---> {string_request}', 'red')
 			for occ in occs:
-				print (f'  - {occ["sent_id"]}')
+				cprint (f'  - {occ["sent_id"]}', 'red')
 		if not valid:
 			exit (1)
 
@@ -139,6 +141,8 @@ def build_merged_corpus (corpus):
 						full_src_token = f'{src_token}#{src_index}'
 						full_tar_token = f'{tar_token}#{tar_index}'
 
+						if full_tar_token not in merged_graph:
+							raise (ValueError (f"Unknown token_id: {tar_token} in sent_id: {tar_sent_id}" ))
 						old = merged_graph.sucs.get(full_tar_token, [])
 						merged_graph.sucs[full_tar_token] = old + [(full_src_token, FsEdge({'1': 'ATTACH'}))]
 			attach_corpus[merged_graph.meta["sent_id"]] = merged_graph
@@ -149,13 +153,17 @@ def build_merged_corpus (corpus):
 	return (final_corpus)
 
 if __name__ == "__main__":
-	set_config ("sud")
-	if len (sys.argv) < 3:
-		raise (ValueError ("Two arguments needed"))
-	input_corpus = Corpus (sys.argv[1])
-	check_input_data(input_corpus)
-	output_corpus = build_merged_corpus (input_corpus)
-	with open(sys.argv[2], 'w') as f:
-		f.write (output_corpus.to_conll())
+	try:
+		set_config ("sud")
+		if len (sys.argv) < 3:
+			raise (ValueError ("Two arguments needed"))
+		input_corpus = Corpus (sys.argv[1])
+		check_input_data(input_corpus)
+		output_corpus = build_merged_corpus (input_corpus)
+		with open(sys.argv[2], 'w') as f:
+			f.write (output_corpus.to_conll())
+		cprint (f"Merged from {len(input_corpus)} sentences to {len(output_corpus)}", "green")
+	except ValueError as msg:
+		cprint(f'Cannot process: {msg}', 'red')
+		exit (1)
 
-	print (f"Merged from {len(input_corpus)} sentences to {len(output_corpus)}")
