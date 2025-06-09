@@ -1,0 +1,6 @@
+UD_English-GENTLE	meta::speakerCount
+UD_English-GUM	meta::genre
+UD_Greek-GDT	sent_id
+UD_Highland_Puebla_Nahuatl-ITML	sent_id
+UD_Scottish_Gaelic-ARCOSG	sent_id
+UD_Western_Sierra_Puebla_Nahuatl-ITML	sent_id
