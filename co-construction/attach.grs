@@ -1,0 +1,14 @@
+strat main { Onf (r) }
+
+rule r {
+	pattern {
+		e: X -[ATTACH]-> Y; 
+		Y[__MISC__Rel, AttachTo] 
+	}
+	commands {	
+		e.label = Y.__MISC__Rel;
+		e.type = "attach";
+		del_feat Y.__MISC__Rel;
+		del_feat Y.AttachTo;
+	}
+}

@@ -1,0 +1,18 @@
+# macrosyntax = ^mais ça continue de $- circuler { avec ESPERLUETTE //__$L3 "et oui" Messi | -$ >+ maintenant
+# sent_id = Rhap_D2003-128bis__Rhap_D2003-128ter
+# speaker = L2__L3
+# text = mais ça continue de circuler avec…__et oui, Messi maintenant.
+1	mais	mais	CCONJ	_	_	3	cc	_	_
+2	ça	ça	PRON	_	Gender=Masc|Number=Sing|Person=3|PronType=Dem	3	subj	_	_
+3	continue	continuer	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	_
+4	de	de	ADP	_	_	3	comp:obl	_	_
+5	circuler	circuler	VERB	_	VerbForm=Inf	4	comp:obj	_	Overlap=Rhap_D2003-128ter|Subject=NoRaising
+6	avec	avec	ADP	_	_	5	mod	_	Overlap=Rhap_D2003-128ter|SpaceAfter=No
+7	…	…	PUNCT	_	_	3	punct	_	Overlap=Rhap_D2003-128ter
+8	et	et	CCONJ	_	_	11	cc	_	Overlap=Rhap_D2003-128bis
+9	oui	oui	INTJ	_	_	11	discourse	_	Overlap=Rhap_D2003-128bis|SpaceAfter=No
+10	,	,	PUNCT	_	_	9	punct	_	Overlap=Rhap_D2003-128bis
+11	Messi	Messi	PROPN	_	_	4	comp:obj/attach	_	Gender[lex]=Unknown|Overlap=Rhap_D2003-128bis
+12	maintenant	maintenant	ADV	_	_	11	mod	_	SpaceAfter=No
+13	.	.	PUNCT	_	_	11	punct	_	_
+
