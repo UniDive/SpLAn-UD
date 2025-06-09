@@ -1,6 +1,6 @@
 # How to encode co-construction is dependency treebanks?
 
-Several proposals to encode co-construction are available.
+There are several proposals available for encoding co-construction.
 
 Two alternatives are (see [SpLAn-UD workshop agenda](https://docs.google.com/document/d/1rQ8cMTbSBWlfL2mm5IO2pB4rtbEZk74QRx8Bk8NcvQ8/edit?tab=t.0#heading=h.n6vqecr51w5v)):
 
@@ -13,8 +13,12 @@ Two alternatives are (see [SpLAn-UD workshop agenda](https://docs.google.com/doc
 
 The current version (2.16) of the [SUD_French-Rhapsodie](https://github.com/surfacesyntacticud/SUD_French-Rhapsodie) treebank uses a Speaker-based encoding following the convention:
 
- - a MISC feature `AttachTo` is on the root node of the sentence implied in a co-construction. The associated value encodes the `sent_id` of the sentence to which it should be attached and the `ID` of the token where the attachement should be done. See [examples](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie@2.16&request=pattern%20{%20X%20[AttachTo]%20}) in the corpus.
- - a second feature `Rel` on the same node, encode the dependency relation label (See [`Rel` values used in this encoding](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie@2.16&request=pattern%20{%20X%20[AttachTo]%20}&clust1_key=X.__MISC__Rel)) [**NOTE**: the feature `Rel` is named `__MISC__Rel` in Grew syntax because the `Rel` feature is also used as a `FEATS` features in [several UD treebanks](https://tables.grew.fr/?data=ud_feats/FEATS&cols=^Rel$). See [Grew doc](https://grew.fr/doc/conllu/#how-the-misc-field-is-handled-by-grew) for more details].
+ - A `MISC` feature, `AttachTo`, is on the root node of a sentence that is implied in a co-construction.
+ The associated value encodes the `sent_id` of the sentence to which it should be attached, as well as the `ID` of the token to which it should be attached.
+ See the [examples](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie@2.16&request=pattern%20{%20X%20[AttachTo]%20}) in the corpus.
+ - A second feature `Rel` on the same node, encodes the dependency relation label.
+ See [`Rel` values used in this encoding](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie@2.16&request=pattern%20{%20X%20[AttachTo]%20}&clust1_key=X.__MISC__Rel)) (**NOTE**: The feature `Rel` is named `__MISC__Rel` in Grew syntax because the `Rel` feature is also used as a feature in `FEATS` by [several UD treebanks](https://tables.grew.fr/?data=ud_feats/FEATS&cols=^Rel$).
+ See [Grew documentation](https://grew.fr/doc/conllu/#how-the-misc-field-is-handled-by-grew) for more details).
 
 ### Example
 An example is given in the file `test/sp_test.conllu` where two sentences from `fr_rhapsodie.sud.train.conllu` (version 2.16) are given:
@@ -48,7 +52,9 @@ An example is given in the file `test/sp_test.conllu` where two sentences from `
 ![speaker_based sentence 2](./test/sb_test_2.svg)
 
 ### Consistency of the encoding
-In order to be converted, the speaker-based encoding is supposed to pass some consistency checks. The version 2.16 of SUD_French-Rhapsodie does not follow some if these checks. A branch [`AttachTo`](https://github.com/surfacesyntacticud/SUD_French-Rhapsodie/tree/AttachTo) contains a version which fixes these inconsistencies.
+In order to be converted, the speaker-based encoding must pass certain consistency checks.
+Version 2.16 of **SUD_French-Rhapsodie** does not adhere to all of these checks.
+A branch called [`AttachTo`](https://github.com/surfacesyntacticud/SUD_French-Rhapsodie/tree/AttachTo) contains a version that fixes these inconsistencies.
 
  - The value of the feature `AttachTo` must be of the form `[token_id]@[sent_id]` with a valid reference: `send_id` exists in the treebanks and `token_id` exists in this sentence. See [some ill-formed `AttachTo`](	https://universal.grew.fr/?custom=6846b72e035e6)
  - The feature `AttachTo` must be on the root node. See [exceptions](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie@2.16&request=pattern%20{%20X%20[AttachTo]%20}%20without%20{%20*%20-[1=root]->%20X%20})
@@ -59,8 +65,8 @@ In order to be converted, the speaker-based encoding is supposed to pass some co
 ---
 
 ## Code
-In this folder, a script `sb_to_db.py` is available to convert the Speaker-based encoding used in **SUD_Rhapsodie** to the Dependency-based encoding.
-The new relation between in the merged sentences is marked with the suffix `/attach` in the resulting annotation.
+A script called `sb_to_db.py` is available in this folder to convert the Speaker-based encoding used in **SUD_French-Rhapsodie** to the Dependency-based encoding.
+In the merged sentences, the new relations are marked with the suffix `/attach` in the resulting annotation.
 
 The command below builds a dependency-based view of the sentences of the example give above:
 
@@ -72,17 +78,17 @@ It produces the merged sentence:
 
 ![merged_sentence](./test/db_test.svg)
 
-**NOTE:** The `grewpy` library is needed to run this code.
+**NOTE:** The `grewpy` library is required to run this code.
 Installation instructions are available [here](https://grew.fr/usage/python/).
 
 ## Building Rhapsodie_db
 
-From the data in branch [AttachTo](https://github.com/surfacesyntacticud/SUD_French-Rhapsodie/tree/AttachTo), a dependency-based version of Rhapsodie can be build.
+A dependency-based version of Rhapsodie can be built from the data in the [AttachTo](https://github.com/surfacesyntacticud/SUD_French-Rhapsodie/tree/AttachTo) branch.
 
 The resulting treebank is available in [Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db).
 
 An example of request for cross-speaker dependencies (`/attach` relations): [Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20e:%20X%20-[type=attach]->%20Y%20}&clust1_key=e.label)
 
 ## TODO
- - Move `speaker_id` at the token level. In the current version, `speaker_id` metadata are concatenated at the sentence level ([Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20e:%20X%20-[type=attach]->%20Y%20}&clust1_key=global.speaker)).
- - Two inconsistent `AttachTo` annotations to fix in **SUD_French-Rhapsodie** (temporaly annotated as `SKIP_AttachTo`/`Skip_Rel` to escape the conversion process): [Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20X%20[SKIP_AttachTo]%20}).
+ - Move `speaker_id` at the token level. In the current version, `speaker_id` metadata is concatenated at the sentence level ([Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20e:%20X%20-[type=attach]->%20Y%20}&clust1_key=global.speaker)).
+ - There are two inconsistent `AttachTo` annotations that need to be fixed in **SUD_French-Rhapsodie** (temporarily annotated as `SKIP_AttachTo`/`Skip_Rel` to bypass the conversion process): [Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20X%20[SKIP_AttachTo]%20}).
