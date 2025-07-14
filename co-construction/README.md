@@ -89,6 +89,7 @@ The resulting treebank is available in [Grew-match](https://universal.grew.fr/?c
 
 An example of request for cross-speaker dependencies (`/attach` relations): [Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20e:%20X%20-[type=attach]->%20Y%20}&clust1_key=e.label)
 
+In the current version, `speaker_id` metadata is concatenated at the sentence level ([Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20e:%20X%20-[type=attach]->%20Y%20}&clust1_key=global.speaker)).
+
 ## TODO
- - Move `speaker_id` at the token level. In the current version, `speaker_id` metadata is concatenated at the sentence level ([Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20e:%20X%20-[type=attach]->%20Y%20}&clust1_key=global.speaker)).
  - There are two inconsistent `AttachTo` annotations that need to be fixed in **SUD_French-Rhapsodie** (temporarily annotated as `SKIP_AttachTo`/`Skip_Rel` to bypass the conversion process): [Grew-match](https://universal.grew.fr/?corpus=SUD_French-Rhapsodie_db&request=pattern%20{%20X%20[SKIP_AttachTo]%20}).

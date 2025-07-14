@@ -102,6 +102,20 @@ def check_input_data(corpus):
 		if not valid:
 			exit (1)
 
+def meta_to_tokens(graph, feature):
+	"""
+	returns a new graph where the value of the metadata [feature] is copied to each non anchor node of the given [graph]
+	"""
+	if feature in graph.meta:
+		feature_value = graph.meta[feature]
+	else:
+		cprint (f'no metadata {feature} in {graph.meta["sent_id"]}', 'magenta')
+		feature_value = "unknown"
+
+	for node in graph:
+		if node != "0":
+			graph[node][feature] = feature_value
+	return graph
 
 def build_merged_corpus (corpus):
 	"""
@@ -125,9 +139,10 @@ def build_merged_corpus (corpus):
 		if len (eq_class) == 1:
 			single_sent_id = eq_class[0]
 			single_graph = corpus[single_sent_id]
-			attach_corpus[single_graph.meta["sent_id"]] = single_graph
+			attach_corpus[single_sent_id] = single_graph
 		else:
-			merged_graph = merge_list_graph ([corpus[sent_id] for sent_id in eq_class])
+			graphs = [meta_to_tokens (corpus[sent_id], "speaker") for sent_id in eq_class]
+			merged_graph = merge_list_graph (graphs)
 			# Add cross sentence edges
 			for key in occs_attachto:
 				tar_sent_id = key.split('@')[1]
@@ -143,6 +158,7 @@ def build_merged_corpus (corpus):
 
 						if full_tar_token not in merged_graph:
 							raise (ValueError (f"Unknown token_id: {tar_token} in sent_id: {tar_sent_id}" ))
+
 						old = merged_graph.sucs.get(full_tar_token, [])
 						merged_graph.sucs[full_tar_token] = old + [(full_src_token, FsEdge({'1': 'ATTACH'}))]
 			attach_corpus[merged_graph.meta["sent_id"]] = merged_graph
