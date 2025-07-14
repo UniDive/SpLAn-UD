@@ -6,3 +6,5 @@ spoken-treebank-filter/test/destination/
 
 .venv
 *__pycache__*
+.DS_Store
+co-construction/upload.sh
