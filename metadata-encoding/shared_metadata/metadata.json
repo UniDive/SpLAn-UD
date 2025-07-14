@@ -1,6 +1,6 @@
 {
-  "sent_id": {
-    "/ENU_13_School-Life_DG.*/": {
+  "sample_id": {
+    "ENU_13_School-Life_DG": {
       "sound_url": "https://naijasyncor.huma-num.fr/carte/mp3/ENU_13_School-Life_DG.mp3"
     }
   },
@@ -9,7 +9,6 @@
       "speaker_age": "16-30",
       "speaker_birthplace": "Enugu",
       "speaker_education": "Tertiary",
-      "speaker_id": "Sp87",
       "speaker_naija_competency": "Moderate",
       "speaker_primary_other_language": "Igbo",
       "speaker_residence": "Enugu",
@@ -19,7 +18,6 @@
       "speaker_age": "16-30",
       "speaker_birthplace": "Enugu",
       "speaker_education": "Tertiary",
-      "speaker_id": "Sp86",
       "speaker_naija_competency": "High",
       "speaker_primary_other_language": "English",
       "speaker_residence": "Enugu",
