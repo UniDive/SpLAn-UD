@@ -1,0 +1,96 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with dep2pict -->
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1326.14648" height="268.37695">
+<rect x="0" y="0" width="1326.14648" height="268.37695" style="fill:white;fill-opacity:0;" />
+<g  transform="translate(0,139.36719) scale(2,2)">
+<text id="word__N_0" x="27.3174" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="27.3174" dy="12.8633">__0__</tspan>
+</text>
+<text id="word__N_1" x="110.829" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="110.829" dy="12.8633">et</tspan>
+</text>
+<text id="subword__N_1" x="110.829" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="110.829" dy="8.33691">upos=CCONJ</tspan>
+<tspan   x="110.829" dy="8.33691">lemma=et</tspan>
+<tspan   x="110.829" dy="8.33691">Overlap=Rhap_D2003-128bis</tspan>
+</text>
+<text id="word__N_2" x="223.216" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="223.216" dy="12.8633">oui</tspan>
+</text>
+<text id="subword__N_2" x="223.216" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="223.216" dy="8.33691">upos=INTJ</tspan>
+<tspan   x="223.216" dy="8.33691">lemma=oui</tspan>
+<tspan   x="223.216" dy="8.33691">Overlap=Rhap_D2003-128bis</tspan>
+<tspan   x="223.216" dy="8.33691">SpaceAfter=No</tspan>
+</text>
+<text id="word__N_3" x="335.604" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="335.604" dy="12.8633">,</tspan>
+</text>
+<text id="subword__N_3" x="335.604" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="335.604" dy="8.33691">upos=PUNCT</tspan>
+<tspan   x="335.604" dy="8.33691">lemma=,</tspan>
+<tspan   x="335.604" dy="8.33691">Overlap=Rhap_D2003-128bis</tspan>
+</text>
+<text id="word__N_4" x="455.427" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="455.427" dy="12.8633">Messi</tspan>
+</text>
+<text id="subword__N_4" x="455.427" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="455.427" dy="8.33691">upos=PROPN</tspan>
+<tspan   x="455.427" dy="8.33691">lemma=Messi</tspan>
+<tspan   x="455.427" dy="8.33691">AttachTo=6@Rhap_D2003-128bis</tspan>
+<tspan   x="455.427" dy="8.33691">Gender[lex]=Unknown</tspan>
+<tspan   x="455.427" dy="8.33691">Overlap=Rhap_D2003-128bis</tspan>
+<tspan   x="455.427" dy="8.33691">__MISC__Rel=comp:obj</tspan>
+</text>
+<text id="word__N_5" x="558.67" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="558.67" dy="12.8633">maintenant</tspan>
+</text>
+<text id="subword__N_5" x="558.67" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="558.67" dy="8.33691">upos=ADV</tspan>
+<tspan   x="558.67" dy="8.33691">lemma=maintenant</tspan>
+<tspan   x="558.67" dy="8.33691">SpaceAfter=No</tspan>
+</text>
+<text id="word__N_6" x="629.678" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="629.678" dy="12.8633">.</tspan>
+</text>
+<text id="subword__N_6" x="629.678" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="629.678" dy="8.33691">upos=PUNCT</tspan>
+<tspan   x="629.678" dy="8.33691">lemma=.</tspan>
+</text>
+
+<marker id="markerendword_1" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_2__N_3__punct" x="280.21631" y="-24.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >punct</text>
+<path style="marker-end:url(#markerendword_1);" stroke="black" fill="none" d="M 225.71631,-13.40625 225.71631,-18.40625 A 3 3 0 0 1 228.71631,-21.40625 L 332.60400,-21.40625 A 3 3 0 0 1 335.60400,-18.40625 L 335.60400,-13.40625" ></path>
+<marker id="markerendword_4" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_4__N_5__mod" x="511.92749" y="-24.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >mod</text>
+<path style="marker-end:url(#markerendword_4);" stroke="black" fill="none" d="M 465.42749,-13.40625 465.42749,-18.40625 A 3 3 0 0 1 468.42749,-21.40625 L 555.67041,-21.40625 A 3 3 0 0 1 558.67041,-18.40625 L 558.67041,-13.40625" ></path>
+<marker id="markerendword_3" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_4__N_2__discourse" x="332.71631" y="-34.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >discourse</text>
+<path style="marker-end:url(#markerendword_3);" stroke="black" fill="none" d="M 445.42749,-13.40625 445.42749,-28.40625 A 3 3 0 0 0 442.42749,-31.40625 L 223.71631,-31.40625 A 3 3 0 0 0 220.71631,-28.40625 L 220.71631,-13.40625" ></path>
+<marker id="markerendword_5" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_4__N_6__punct" x="544.92749" y="-34.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >punct</text>
+<path style="marker-end:url(#markerendword_5);" stroke="black" fill="none" d="M 460.42749,-13.40625 460.42749,-28.40625 A 3 3 0 0 1 463.42749,-31.40625 L 626.67847,-31.40625 A 3 3 0 0 1 629.67847,-28.40625 L 629.67847,-13.40625" ></path>
+<marker id="markerendword_2" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_4__N_1__cc" x="280.32861" y="-44.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >cc</text>
+<path style="marker-end:url(#markerendword_2);" stroke="black" fill="none" d="M 450.42749,-13.40625 450.42749,-38.40625 A 3 3 0 0 0 447.42749,-41.40625 L 113.82861,-41.40625 A 3 3 0 0 0 110.82861,-38.40625 L 110.82861,-13.40625" ></path>
+<marker id="markerendword_0" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_0__N_4__root" x="241.31738" y="-54.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >root</text>
+<path style="marker-end:url(#markerendword_0);" stroke="black" fill="none" d="M 27.31738,-13.40625 27.31738,-48.40625 A 3 3 0 0 1 30.31738,-51.40625 L 452.42749,-51.40625 A 3 3 0 0 1 455.42749,-48.40625 L 455.42749,-13.40625" ></path>
+
+
+</g>
+</svg>
