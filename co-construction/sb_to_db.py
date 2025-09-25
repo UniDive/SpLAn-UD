@@ -123,7 +123,7 @@ def build_merged_corpus (corpus):
 	but with "attached_to" sentences merged in one graph.
 	"""
 	# Collect all occurrences of the "AttachTo" feature in the corpus
-	occs_attachto = corpus.search (Request("pattern { X [AttachTo]}"), clustering_parameter=["X.AttachTo"])
+	occs_attachto = corpus.search (Request("pattern { X [AttachTo]}"), clustering_keys=["X.AttachTo"])
 
 	# Compute the partition (list of list of sent_id) of sentences that should be "merged".
 	# All sentences that should be merged are in the same equivalent class.
