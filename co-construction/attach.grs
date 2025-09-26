@@ -1,6 +1,12 @@
-strat main { Onf (r) }
+strat main { 
+	Seq (
+		Onf (attach_relation),
+		Onf (move_root),
+	)
+}
 
-rule r {
+% Move relation name from feature to edge
+rule attach_relation {
 	pattern {
 		e: X -[ATTACH]-> Y; 
 		Y[__MISC__Rel, AttachTo] 
@@ -10,5 +16,15 @@ rule r {
 		e.type = "attach";
 		del_feat Y.__MISC__Rel;
 		del_feat Y.AttachTo;
+	}
+}
+
+% If "attach" relation are not all left-to-right, the root may not be on the first sentence
+% we have to move the root relation to have a tree in the end
+rule move_root {
+	pattern { e: ANCHOR -[root]-> X1; X2 -[type=attach]-> X1 }
+	commands {
+		del_edge e;
+		add_edge ANCHOR -[root]-> X2; 
 	}
 }
