@@ -35,5 +35,10 @@ rhapsodie:
 		python3 sb_to_db.py $$infile $$outfile ; \
 	done
 
+kiparla:
+	mkdir -p test/kiparla_db
+	python3 sb_to_db_kiparla.py test/kiparla/BOA3017.conllu test/kiparla_db/BOA3017.conllu 
+	python3 sb_to_db_kiparla.py test/kiparla/BOD2018.conllu test/kiparla_db/BOD2018.conllu 
+
 upload:
 	scp -o "ProxyJump guillaum@ssh-nge.inria.fr" SUD_French-Rhapsodie_db/*.conllu guillaum@grew-host.loria.fr:/home/guillaum/resources/SUD_French-Rhapsodie_db

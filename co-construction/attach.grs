@@ -6,6 +6,7 @@ strat main {
 }
 
 % Move relation name from feature to edge
+% Rule specific to former Rhapsodie annotation, not used wih Kiparla
 rule attach_relation {
 	pattern {
 		e: X -[ATTACH]-> Y; 
@@ -22,9 +23,10 @@ rule attach_relation {
 % If "attach" relation are not all left-to-right, the root may not be on the first sentence
 % we have to move the root relation to have a tree in the end
 rule move_root {
-	pattern { e: ANCHOR -[root]-> X1; X2 -[type=attach]-> X1 }
+	pattern { e: ANCHOR -[1=root]-> X1; X2 -[type=attach]-> X1 }
 	commands {
+		add_edge f: ANCHOR -> X2; 
+		f.label = e.label;
 		del_edge e;
-		add_edge ANCHOR -[root]-> X2; 
 	}
 }

@@ -8,3 +8,4 @@ spoken-treebank-filter/test/destination/
 *__pycache__*
 .DS_Store
 co-construction/upload.sh
+_build_grew
