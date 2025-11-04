@@ -117,15 +117,15 @@ def meta_to_tokens(graph, feature):
 			graph[node][feature] = feature_value
 	return graph
 
-def parse_value (token, defrel="discourse"):
+def parse_value (token, deprel="discourse:backchannel"):
 	"""
 	Split a Backchannel or Coconstruct string: split on "::" if any and then on the last "-"
-	Exemple: "BOA3017_91-2" --> ("discourse", "BOA3017_91", "2")
+	Exemple: "BOA3017_91-2" --> ("discourse:backchannel", "BOA3017_91", "2")
 	Exemple: "obl::BOA3017_120_121_123_125-21" --> ("obl", "BOA3017_120_121_123_125", "212")
 	"""
 	rel_ref = token.split("::")
 	if len(rel_ref) == 1:
-		rel = defrel
+		rel = deprel
 		token = token
 	elif len(rel_ref) == 2:
 		rel = rel_ref[0]
