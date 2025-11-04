@@ -2,6 +2,7 @@ strat main {
 	Seq (
 		Onf (attach_relation),
 		Onf (move_root),
+		Onf (features),
 	)
 }
 
@@ -28,5 +29,16 @@ rule move_root {
 		add_edge f: ANCHOR -> X2; 
 		f.label = e.label;
 		del_edge e;
+	}
+}
+
+package features {
+	rule Coconstruct {
+		pattern { X[Coconstruct<>"Yes"] }
+		commands { X.Coconstruct="Yes" }
+	}
+	rule Backchannel {
+		pattern { X[Backchannel<>"Yes"] }
+		commands { X.Backchannel="Yes" }
 	}
 }
