@@ -3571,7 +3571,7 @@
 # conversation_id = BOA3017
 1	non	non	ADV	_	PronType=Neg	2	advmod	_	Begin=775.948|KID=533-0|OverlappingGroup=93
 2	è	essere	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	0	root	_	KID=533-1|OverlappingGroup=93
-3	che	che	SCONJ	_	_	2	ccomp	_	End=776.788|KID=533-2
+3	che	che	SCONJ	_	_	2	ccomp:unfinished	_	End=776.788|KID=533-2
 
 # sent_id = BOA3017_535
 # text = che ne so x m'ha stupito non sapevo che fosse una parola x
@@ -4165,7 +4165,7 @@
 5	tutto	tutto	PRON	_	Gender=Masc|Number=Sing|PronType=Ind	0	root	_	KID=625-4
 6	insieme	insieme	ADV	_	_	5	xcomp	_	KID=625-5
 7	pensavo	pensare	VERB	_	Mood=Ind|Number=Sing|Person=1|Tense=Imp|VerbForm=Fin	5	conj	_	KID=625-6|OverlappingGroup=UNK
-8	che	che	SCONJ	_	_	7	ccomp	_	End=937.995|KID=625-7|OverlappingGroup=UNK
+8	che	che	SCONJ	_	_	7	ccomp:unfinished	_	End=937.995|KID=625-7|OverlappingGroup=UNK
 
 # sent_id = BOA3017_626
 # text = no n~
@@ -5759,7 +5759,7 @@
 4	c'	ci	PRON	_	Number=Plur|Person=1|PronType=Prs	5	expl	_	KID=872-3|SpaceAfter=No|speaker_id=BO139
 5	era	essere	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbForm=Fin	0	root	_	KID=872-4|speaker_id=BO139
 6	livia	Livia	PROPN	_	_	5	nsubj	_	Anonymized=Yes|KID=872-5|speaker_id=BO139
-7	che	che	PRON	_	PronType=Rel	6	acl	_	End=1349.444|KID=872-6|speaker_id=BO139
+7	che	che	PRON	_	PronType=Rel	6	acl:unfinished	_	End=1349.444|KID=872-6|speaker_id=BO139
 8	fai	fare	VERB	_	Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin	6	ccomp:reported/attach	_	Begin=1349.577|Coconstruct=Yes|KID=873-0|speaker_id=BO145
 9	basta	bastare	VERB	_	Gender=Fem|Number=Sing	8	ccomp	_	KID=873-1|speaker_id=BO145
 10	fai	fare	VERB	_	Mood=Ind|Number=Sing|Person=2|Tense=Pres|VerbForm=Fin	8	parataxis	_	KID=873-2|speaker_id=BO145

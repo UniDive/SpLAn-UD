@@ -2046,7 +2046,7 @@
 13	eh	eh	INTJ	_	_	16	discourse	_	Begin=565.208|KID=147-0|speaker_id=BO140
 14	che	che	SCONJ	_	_	16	mark	_	KID=147-1|speaker_id=BO140
 15	ci	ci	PRON	_	PronType=Prs	16	expl	_	KID=147-2|speaker_id=BO140
-16	siano	essere	VERB	_	Mood=Sub|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin	12|12	acl/attach|csubj	_	Coconstruct=Yes|KID=147-3|speaker_id=BO140
+16	siano	essere	VERB	_	Mood=Sub|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin	12	csubj	_	KID=147-3|speaker_id=BO140
 17	anche	anche	ADV	_	_	16	advmod	_	KID=147-4|speaker_id=BO140
 18	degli	del	DET	_	Gender=Masc|Number=Plur|PronType=Ind	19	det	_	KID=147-5|speaker_id=BO140
 19	uomini	uomo	NOUN	_	Gender=Masc|Number=Plur	16	nsubj	_	Intonation=WeaklyRising|KID=147-6|speaker_id=BO140
@@ -2059,7 +2059,7 @@
 25	essendo	essere	AUX	_	VerbForm=Ger	28	cop	_	KID=147-11|speaker_id=BO140
 26	in	in	ADP	_	_	28	case	_	KID=147-12|speaker_id=BO140
 27	due	due	NUM	_	NumType=Card	28	nummod	_	KID=147-13|speaker_id=BO140
-28	doppie	doppia	NOUN	_	Gender=Fem|Number=Plur	12|32	conj/attach|advcl	_	Coconstruct=Yes|End=569.21|Intonation=WeaklyRising|KID=147-14|Prolonged=Yes|speaker_id=BO140
+28	doppie	doppia	NOUN	_	Gender=Fem|Number=Plur	32	advcl	_	End=569.21|Intonation=WeaklyRising|KID=147-14|Prolonged=Yes|speaker_id=BO140
 29	e	e	CCONJ	_	_	32	discourse	_	Begin=570.2|KID=148-0|Prolonged=Yes|speaker_id=BO140
 30	eravamo	essere	AUX	_	Mood=Ind|Number=Plur|Person=1|Tense=Imp|VerbForm=Fin	32	cop	_	KID=148-1|speaker_id=BO140
 31	più	più	ADV	_	_	32	advmod	_	KID=148-2|speaker_id=BO140
@@ -2891,7 +2891,7 @@
 32	di	di	ADP	_	_	33	reparandum	_	KID=195-14|Prolonged=Yes|speaker_id=BO140
 33	di	di	ADP	_	_	34	mark	_	KID=195-15|speaker_id=BO140
 34	stare	stare	VERB	_	VerbForm=Inf	20	parataxis	_	KID=195-16|speaker_id=BO140
-35	per	per	ADP	_	_	34|36	case|case/attach	_	Coconstruct=Yes|End=799.55|Intonation=WeaklyRising|KID=195-17|Prolonged=Yes|speaker_id=BO140
+35	per	per	ADP	_	_	34|36	obl:unfinished|case/attach	_	Coconstruct=Yes|End=799.55|Intonation=WeaklyRising|KID=195-17|Prolonged=Yes|speaker_id=BO140
 36	fatti	fatto	NOUN	_	Gender=Masc|Number=Plur	34	obl/attach	_	Begin=799.709|Coconstruct=Yes|KID=197-0|speaker_id=BO140
 37	suoi	suo	ADJ	_	Gender=Masc|Number=Plur|Poss=Yes|PronType=Prs	36	amod	_	End=800.459|Intonation=Falling|KID=197-1|speaker_id=BO140
 
@@ -3271,7 +3271,7 @@
 24	non	non	ADV	_	PronType=Neg	25	advmod	_	KID=228-14|speaker_id=BO140
 25	studenti	studente	NOUN	_	Gender=Masc|Number=Plur	22	conj	_	KID=228-15|speaker_id=BO140
 26	quindi	quindi	CCONJ	_	_	25	cc	_	End=888.22|Intonation=WeaklyRising|KID=228-16|Prolonged=Yes|speaker_id=BO140
-27	sì	sì	INTJ	_	_	15	discourse:backchannel/attach	_	Backchannel=Yes|Begin=883.51|Clitic=Yes|End=884.14|Intonation=Falling|KID=229-0|OverlappingGroup=42|speaker_id=BO118
+27	sì	sì	INTJ	_	_	15	discourse:backchannel/attach	_	Backchannel=Yes|Begin=883.51|End=884.14|Intonation=Falling|KID=229-0|OverlappingGroup=42|speaker_id=BO118
 28	sì	sì	INTJ	_	_	2	discourse:backchannel/attach	_	Backchannel=Yes|Begin=879.05|KID=226-0|OverlappingGroup=40|speaker_id=BO140
 29	esatto	esatto	ADJ	_	Gender=Masc|Number=Sing	28	parataxis	_	End=880.01|Intonation=Falling|KID=226-1|OverlappingGroup=40|speaker_id=BO140
 
@@ -3778,9 +3778,9 @@
 24	sta'	stare	VERB	_	Gender=Fem|Number=Sing|VerbForm=Inf	19	advcl	_	KID=263-8|speaker_id=BO118|Truncated=Yes
 25	tranquilla	tranquillo	ADJ	_	Gender=Fem|Number=Sing	24	xcomp	_	End=1024.56|KID=263-9|OverlappingGroup=50|speaker_id=BO118
 26	sì	sì	INTJ	_	_	8	discourse:backchannel/attach	_	Backchannel=Yes|Begin=1022.44|KID=264-0|OverlappingGroup=49|speaker_id=BO140
-27	sì	sì	INTJ	_	_	8|26	discourse:backchannel/attach|parataxis	_	Backchannel=Yes|KID=264-1|OverlappingGroup=49|speaker_id=BO140
-28	sì	sì	INTJ	_	_	8|26	discourse:backchannel/attach|parataxis	_	Backchannel=Yes|End=1023.18|KID=264-2|OverlappingGroup=49|speaker_id=BO140
-29	esatto	esatto	ADJ	_	Gender=Masc|Number=Sing	8|26	discourse:backchannel/attach|parataxis	_	Backchannel=Yes|Begin=1024.146|End=1024.7|Intonation=Falling|KID=265-0|OverlappingGroup=50|speaker_id=BO140
+27	sì	sì	INTJ	_	_	26	parataxis	_	KID=264-1|OverlappingGroup=49|speaker_id=BO140
+28	sì	sì	INTJ	_	_	26	parataxis	_	End=1023.18|KID=264-2|OverlappingGroup=49|speaker_id=BO140
+29	esatto	esatto	ADJ	_	Gender=Masc|Number=Sing	26	parataxis	_	Begin=1024.146|End=1024.7|Intonation=Falling|KID=265-0|OverlappingGroup=50|speaker_id=BO140
 
 # sent_id = BOD2018_266
 # text = cioè non so se io quando avrò una famiglia vorrò sta a bologna
@@ -4049,8 +4049,8 @@
 25	una	uno	DET	_	Definite=Ind|Gender=Fem|Number=Sing|PronType=Art	26	det	_	KID=279-29|speaker_id=BO118
 26	famiglia	famiglia	NOUN	_	Gender=Fem|Number=Sing	24	dislocated	_	End=1093.52|KID=279-30|OverlappingGroup=55|speaker_id=BO118
 27	sì	sì	INTJ	_	_	4	discourse:backchannel/attach	_	Backchannel=Yes|Begin=1092.845|KID=280-0|OverlappingGroup=55|speaker_id=BO140
-28	sì	sì	INTJ	_	_	4|27	discourse:backchannel/attach|parataxis	_	Backchannel=Yes|KID=280-1|OverlappingGroup=55|speaker_id=BO140
-29	sì	sì	INTJ	_	_	4|27	discourse:backchannel/attach|parataxis	_	Backchannel=Yes|End=1093.495|KID=280-2|OverlappingGroup=55|speaker_id=BO140
+28	sì	sì	INTJ	_	_	27	parataxis	_	KID=280-1|OverlappingGroup=55|speaker_id=BO140
+29	sì	sì	INTJ	_	_	27	parataxis	_	End=1093.495|KID=280-2|OverlappingGroup=55|speaker_id=BO140
 
 # sent_id = BOD2018_281_283__BOD2018_282
 # text = eh per dire però allo stesso tempo non abiterei a bologna forse per tutta la mia vita ma neanche in un centro piccolo come [TOWN_NAME] perché non__okay
@@ -4270,8 +4270,8 @@
 32	solite	solito	ADJ	_	Gender=Fem|Number=Plur	33	amod	_	KID=294-8|speaker_id=BO140 BO118 BO118 BO118
 33	cose	cosa	NOUN	_	Gender=Fem|Number=Plur	11	conj	_	End=1167.01|Intonation=WeaklyRising|KID=294-9|Prolonged=Yes|speaker_id=BO140 BO118 BO118 BO118
 34	sì	sì	INTJ	_	_	12	discourse:backchannel/attach	_	Backchannel=Yes|Begin=1165.3|KID=295-0|OverlappingGroup=58|speaker_id=BO140
-35	sì	sì	INTJ	_	_	12|34	discourse:backchannel/attach|parataxis	_	Backchannel=Yes|KID=295-1|OverlappingGroup=58|speaker_id=BO140
-36	sì	sì	INTJ	_	_	12|34	discourse:backchannel/attach|parataxis	_	Backchannel=Yes|End=1166.24|KID=295-2|OverlappingGroup=58|speaker_id=BO140
+35	sì	sì	INTJ	_	_	34	parataxis	_	KID=295-1|OverlappingGroup=58|speaker_id=BO140
+36	sì	sì	INTJ	_	_	34	parataxis	_	End=1166.24|KID=295-2|OverlappingGroup=58|speaker_id=BO140
 
 # sent_id = BOD2018_289_291
 # text = cioè io non ho ricordi di quando son piccola che uscivo con i miei in centro a [TOWN_NAME] perché non ma pochissimi perché non
@@ -5526,7 +5526,7 @@
 8	tua	tuo	ADJ	_	Gender=Fem|Number=Sing|Poss=Yes|PronType=Prs	7	amod	_	KID=384-7|speaker_id=BO140
 9	è	essere	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	10	cop	_	KID=384-8|speaker_id=BO140
 10	vero	vero	ADJ	_	Gender=Masc|Number=Sing	5	parataxis	_	End=1489.18|Intonation=Rising|KID=384-9|speaker_id=BO140
-11	da	da	ADP	_	_	5|12	obl/attach|case	_	Begin=1489.44|Coconstruct=Yes|KID=385-0|speaker_id=BO118
+11	da	da	ADP	_	_	12	case	_	Begin=1489.44|KID=385-0|speaker_id=BO118
 12	casa	casa	NOUN	_	Gender=Fem|Number=Sing	20	obl	_	KID=385-1|speaker_id=BO118
 13	mia	mio	ADJ	_	Gender=Fem|Number=Sing|Poss=Yes|PronType=Prs	14	amod	_	KID=385-2|Prolonged=Yes|speaker_id=BO118
 14	forse	forse	ADV	_	_	20	advmod	_	KID=385-3|speaker_id=BO118
@@ -5535,8 +5535,8 @@
 17	non	non	ADV	_	PronType=Neg	20	advmod	_	KID=385-6|speaker_id=BO118
 18	è	essere	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	20	cop	_	KID=385-7|speaker_id=BO118
 19	così	così	ADV	_	_	20	advmod	_	KID=385-8|speaker_id=BO118
-20	lontana	lontano	ADJ	_	Gender=Fem|Number=Sing	21	amod	_	KID=385-9|speaker_id=BO118
-21	ascoli	Ascoli	PROPN	_	_	_	_	_	KID=385-10|speaker_id=BO118
+20	lontana	lontano	ADJ	_	Gender=Fem|Number=Sing	5	conj/attach	_	Coconstruct=Yes|KID=385-9|speaker_id=BO118
+21	ascoli	Ascoli	PROPN	_	_	20	nsubj	_	KID=385-10|speaker_id=BO118
 22	piceno	Piceno	PROPN	_	_	21	flat:name	_	KID=385-11|speaker_id=BO118
 
 # sent_id = BOD2018_385b__BOD2018_386
@@ -6251,7 +6251,7 @@
 12	sia	essere	AUX	_	Mood=Sub|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	10	ccomp	_	KID=431-11|Prolonged=Yes
 13	niente	niente	PRON	_	Number=Sing|PronType=Ind	12	obj	_	KID=431-12
 14	di	di	ADP	_	_	15	case	_	KID=431-13
-15	che	che	PRON	_	PronType=Rel	13	amod	_	End=1635.81|KID=431-14
+15	che	che	PRON	_	PronType=Rel	13	nmod	_	End=1635.81|KID=431-14
 
 # sent_id = BOD2018_432
 # text = forse le facoltà tipo la facoltà d'economia che c'ha 'sto prato enorme davanti che è fatta tipo a ferro de cavallo
