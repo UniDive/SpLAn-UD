@@ -17,13 +17,7 @@ def expand(shared_meta, sample_id, conllu):
 	# Update conllu['metaJson'] with the collected additional keys
 	conllu['metaJson'].update(additional_keys)
 
-def main():
-	if len(sys.argv) != 3:
-		print("Expect two args: in_folder, out_folder")
-		sys.exit(1)
-
-	in_folder, out_folder = sys.argv[1], sys.argv[2]
-
+def unshare(in_folder, out_folder):
 	if not os.path.isdir(in_folder):
 		print(f"Arg 1 ({in_folder}) is not a folder")
 		sys.exit(1)
@@ -56,4 +50,10 @@ def main():
 			print(f"Error processing {sample}: {e}")
 
 if __name__ == "__main__":
-	main()
+	if len(sys.argv) != 3:
+		print("Expect two args: in_folder, out_folder")
+		sys.exit(1)
+
+	in_folder, out_folder = sys.argv[1], sys.argv[2]
+
+	unshare(in_folder, out_folder)
