@@ -22,10 +22,7 @@ def merge_dictionaries_with_concat(metadata_1, metadata_2):
 	merged_metadata = metadata_1.copy()
 	for key, value in metadata_2.items():
 		if key in merged_metadata:
-			if key == "##MWT_MISC##": # Special encoding in Grew of features on MWT
-				merged_metadata[key] = f'{merged_metadata[key]}||{value}'
-			else:
-				merged_metadata[key] = short_concat(merged_metadata[key], value)
+			merged_metadata[key] = short_concat(merged_metadata[key], value)
 		else:
 			merged_metadata[key] = value
 	return merged_metadata
@@ -39,7 +36,7 @@ def merge_list_graph(graphs):
 	Merge a list of graphs in one graph by concatenation of token
 	In the merged graph, the nodes_id are line 12#3 for the token number 12 of graph with index 3
 	NOTE: The anchor node of the first graph is kept, the anchor node of next graphs are discarded
-	NOTE: The new graph is disconnected: all old roots of merged graphs (except the first) have no governor
+	NOTE: The new graph is disconnected
 	"""
 	new_graph = Graph()
 	for index, graph in enumerate(graphs):
@@ -85,7 +82,10 @@ def check_input_data(corpus):
 	Check if the corpus is consistently annotated in AttachTo/Rel
 	"""
 	validation_requests = [
-		'pattern { X [Backchannel]|[Coconstruct] } without { * -[root]-> X }',
+		'pattern { X [AttachTo <> re"[0-9]+@.*"] }',
+		'pattern { X [AttachTo] } without { * -[1=root]-> X }',
+		'pattern { X [!AttachTo, __MISC__Rel] }',
+		'pattern { X [AttachTo, !__MISC__Rel] }',
 	]
 
 	for string_request in validation_requests:
@@ -117,43 +117,20 @@ def meta_to_tokens(graph, feature):
 			graph[node][feature] = feature_value
 	return graph
 
-def parse_value (token, deprel="discourse:backchannel"):
-	"""
-	Split a Backchannel or Coconstruct string: split on "::" if any and then on the last "-"
-	Exemple: "BOA3017_91-2" --> ("discourse:backchannel", "BOA3017_91", "2")
-	Exemple: "obl::BOA3017_120_121_123_125-21" --> ("obl", "BOA3017_120_121_123_125", "212")
-	"""
-	rel_ref = token.split("::")
-	if len(rel_ref) == 1:
-		rel = deprel
-		token = token
-	elif len(rel_ref) == 2:
-		rel = rel_ref[0]
-		token = rel_ref[1]
-	else:
-		raise ValueError (f'Illegal value {token} (more than one "::")')
-	index = token.rfind("-")
-	if token == -1:
-		raise ValueError (f'Illegal value {token} (no hyphen)')
-	else:
-		return (rel, token[:index], token[index+1:])
-
-
 def build_merged_corpus (corpus):
 	"""
 	Main function that turns an input [corpus] into a new corpus with the same data 
-	but with "Coconstruct/Backchannel" merged in one graph.
+	but with "attached_to" sentences merged in one graph.
 	"""
-	occs_coconstruct = corpus.search (Request("pattern { X [Coconstruct]}"), clustering_keys=["X.Coconstruct"])
-	occs_backchannel = corpus.search (Request("pattern { X [Backchannel]}"), clustering_keys=["X.Backchannel"])
-	occs_all = occs_coconstruct | occs_backchannel
+	# Collect all occurrences of the "AttachTo" feature in the corpus
+	occs_attachto = corpus.search (Request("pattern { X [AttachTo]}"), clustering_keys=["X.AttachTo"])
 
 	# Compute the partition (list of list of sent_id) of sentences that should be "merged".
-	# All sentences that should be merged are in the same equivalence class.
-	partition = [[s] for s in list (corpus)] # Initial partition
-	for (key, occs) in occs_all.items():
-		(_, tar_sent_id, _) = parse_value(key)
-		for src_sent in occs:
+	# All sentences that should be merged are in the same equivalent class.
+	partition = [[s] for s in list (corpus)]
+	for key in occs_attachto:
+		tar_sent_id = key.split('@')[1]
+		for src_sent in occs_attachto[key]:
 			merge_classes_by_element(partition, src_sent["sent_id"], tar_sent_id)
 
 	# Build the new corpus with fake "ATTACH" links
@@ -164,25 +141,26 @@ def build_merged_corpus (corpus):
 			single_graph = corpus[single_sent_id]
 			attach_corpus[single_sent_id] = single_graph
 		else:
-			graphs = [meta_to_tokens (corpus[sent_id], "speaker_id") for sent_id in eq_class]
+			graphs = [meta_to_tokens (corpus[sent_id], "speaker") for sent_id in eq_class]
 			merged_graph = merge_list_graph (graphs)
-
 			# Add cross sentence edges
-			for (key, occs) in occs_all.items():
-				(rel, tar_sent_id, tar_token) = parse_value(key)
+			for key in occs_attachto:
+				tar_sent_id = key.split('@')[1]
 				if tar_sent_id in eq_class:
 					tar_index = eq_class.index(tar_sent_id)
-					for occ in occs:
+					tar_token = key.split('@')[0]
+					for occ in occs_attachto[key]:
 						src_sent_id = occ["sent_id"]
 						src_index = eq_class.index(src_sent_id)
 						src_token = occ["matching"]["nodes"]["X"]
 						full_src_token = f'{src_token}#{src_index}'
 						full_tar_token = f'{tar_token}#{tar_index}'
+
 						if full_tar_token not in merged_graph:
 							raise (ValueError (f"Unknown token_id: {tar_token} in sent_id: {tar_sent_id}" ))
-						old = merged_graph.sucs.get(full_tar_token, [])
-						merged_graph.sucs[full_tar_token] = old + [(full_src_token, FsEdge({'1': rel, 'type': 'attach'}))]
 
+						old = merged_graph.sucs.get(full_tar_token, [])
+						merged_graph.sucs[full_tar_token] = old + [(full_src_token, FsEdge({'1': 'ATTACH'}))]
 			attach_corpus[merged_graph.meta["sent_id"]] = merged_graph
 
 	# A GRS is used to move the deprel annotation from the feature Rel to the edge.
@@ -192,11 +170,11 @@ def build_merged_corpus (corpus):
 
 if __name__ == "__main__":
 	try:
-		set_config ("ud")
+		set_config ("sud")
 		if len (sys.argv) < 3:
 			raise (ValueError ("Two arguments needed"))
 		input_corpus = Corpus (sys.argv[1])
-		# check_input_data(input_corpus)
+		check_input_data(input_corpus)
 		output_corpus = build_merged_corpus (input_corpus)
 		with open(sys.argv[2], 'w') as f:
 			f.write (output_corpus.to_conll())

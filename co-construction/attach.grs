@@ -1,6 +1,14 @@
-strat main { Onf (r) }
+strat main { 
+	Seq (
+		Onf (attach_relation),
+		Onf (move_root),
+		Onf (features),
+	)
+}
 
-rule r {
+% Move relation name from feature to edge
+% Rule specific to former Rhapsodie annotation, not used wih Kiparla
+rule attach_relation {
 	pattern {
 		e: X -[ATTACH]-> Y; 
 		Y[__MISC__Rel, AttachTo] 
@@ -10,5 +18,27 @@ rule r {
 		e.type = "attach";
 		del_feat Y.__MISC__Rel;
 		del_feat Y.AttachTo;
+	}
+}
+
+% If "attach" relation are not all left-to-right, the root may not be on the first sentence
+% we have to move the root relation to have a tree in the end
+rule move_root {
+	pattern { e: ANCHOR -[1=root]-> X1; X2 -[type=attach]-> X1 }
+	commands {
+		add_edge f: ANCHOR -> X2; 
+		f.label = e.label;
+		del_edge e;
+	}
+}
+
+package features {
+	rule Coconstruct {
+		pattern { X[Coconstruct<>"Yes"] }
+		commands { X.Coconstruct="Yes" }
+	}
+	rule Backchannel {
+		pattern { X[Backchannel<>"Yes"] }
+		commands { X.Backchannel="Yes" }
 	}
 }
