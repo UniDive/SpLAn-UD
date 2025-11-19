@@ -1,70 +1,70 @@
 {
-  "conversations": [
-    {
-      "code": "BOD2018",
+  "conversation_id": {
+    "BOD2018": {
       "type": "semistructured-interview",
       "duration": 1688,
       "participants": 2,
-      "participants_codes": ["BO118", "BO140"],
+      "participants_codes": [
+        "BO118",
+        "BO140"
+      ],
       "participants_relationship": "symmetric",
       "moderator": "yes",
       "year": 2018,
       "collection_point": "BO"
     },
-    {
-      "code": "BOA3017",
+    "BOA3017": {
       "type": "free-conversation",
       "duration": 1820,
       "participants": 4,
-      "participants_codes": ["BO139","BO145","BO146","BO147"],
+      "participants_codes": [
+        "BO139",
+        "BO145",
+        "BO146",
+        "BO147"
+      ],
       "participants_relationship": "symmetric",
       "moderator": "no",
       "year": 2019,
       "collection_point": "BO"
     }
-  ],
-  "participants": [
-    {
-      "code": "BO118",
+  },
+  "participant_id": {
+    "BO118": {
       "occupation": "0-Students",
       "gender": "F",
       "school_region": "marche",
       "age_range": "21-25"
     },
-    {
-      "code": "BO140",
+    "BO140": {
       "occupation": "0-Students",
       "gender": "F",
       "school_region": "marche",
       "age_range": "26-30"
     },
-    {
-      "code": "BO139",
+    "BO139": {
       "occupation": "0-Students",
       "gender": "M",
       "school_region": "emilia-romagna",
       "age_range": "21-25"
     },
-    {
-      "code": "BO145",
+    "BO145": {
       "occupation": "0-Students",
       "gender": "F",
       "school_region": "emilia-romagna",
       "age_range": "21-25"
     },
-    {
-      "code": "BO146",
+    "BO146": {
       "occupation": "0-Students",
       "gender": "M",
       "school_region": "marche",
       "age_range": "21-25"
     },
-    {
-      "code": "BO147",
+    "BO147": {
       "occupation": "0-Students",
       "gender": "M",
       "school_region": "marche",
       "age_range": "21-25"
     }
-  ]
+  }
 }
