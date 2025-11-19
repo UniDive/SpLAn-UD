@@ -5,22 +5,22 @@
       "type": "semistructured-interview",
       "duration": 1688,
       "participants": 2,
-      "participants codes": ["BO118", "BO140"],
-      "participants relationship": "symmetric",
+      "participants_codes": ["BO118", "BO140"],
+      "participants_relationship": "symmetric",
       "moderator": "yes",
       "year": 2018,
-      "collection point": "BO"
+      "collection_point": "BO"
     },
     {
       "code": "BOA3017",
       "type": "free-conversation",
       "duration": 1820,
       "participants": 4,
-      "participants codes": ["BO139","BO145","BO146","BO147"],
-      "participants relationship": "symmetric",
+      "participants_codes": ["BO139","BO145","BO146","BO147"],
+      "participants_relationship": "symmetric",
       "moderator": "no",
       "year": 2019,
-      "collection point": "BO"
+      "collection_point": "BO"
     }
   ],
   "participants": [
@@ -28,43 +28,43 @@
       "code": "BO118",
       "occupation": "0-Students",
       "gender": "F",
-      "school-region": "marche",
-      "age-range": "21-25"
+      "school_region": "marche",
+      "age_range": "21-25"
     },
     {
       "code": "BO140",
       "occupation": "0-Students",
       "gender": "F",
-      "school-region": "marche",
-      "age-range": "26-30"
+      "school_region": "marche",
+      "age_range": "26-30"
     },
     {
       "code": "BO139",
       "occupation": "0-Students",
       "gender": "M",
-      "school-region": "emilia-romagna",
-      "age-range": "21-25"
+      "school_region": "emilia-romagna",
+      "age_range": "21-25"
     },
     {
       "code": "BO145",
       "occupation": "0-Students",
       "gender": "F",
-      "school region": "emilia-romagna",
-      "age range": "21-25"
+      "school_region": "emilia-romagna",
+      "age_range": "21-25"
     },
     {
       "code": "BO146",
       "occupation": "0-Students",
       "gender": "M",
-      "school region": "marche",
-      "age range": "21-25"
+      "school_region": "marche",
+      "age_range": "21-25"
     },
     {
       "code": "BO147",
       "occupation": "0-Students",
       "gender": "M",
-      "school region": "marche",
-      "age range": "21-25"
+      "school_region": "marche",
+      "age_range": "21-25"
     }
   ]
 }
