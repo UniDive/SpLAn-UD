@@ -119,25 +119,17 @@ def meta_to_tokens(graph, feature):
 
 def parse_value (token, deprel="discourse:backchannel"):
 	"""
-	Split a Backchannel or Coconstruct string: split on "::" if any and then on the last "-"
-	Exemple: "BOA3017_91-2" --> ("discourse:backchannel", "BOA3017_91", "2")
-	Exemple: "obl::BOA3017_120_121_123_125-21" --> ("obl", "BOA3017_120_121_123_125", "212")
+	Split a Backchannel or Coconstruct string: split on "::"
+	Exemple: "BOA3017_91::2" --> ("discourse:backchannel", "BOA3017_91", "2")
+	Exemple: "obl::BOA3017_120_121_123_125:21" --> ("obl", "BOA3017_120_121_123_125", "212")
 	"""
-	rel_ref = token.split("::")
-	if len(rel_ref) == 1:
-		rel = deprel
-		token = token
-	elif len(rel_ref) == 2:
-		rel = rel_ref[0]
-		token = rel_ref[1]
+	sp = token.split("::")
+	if len(sp) == 2:
+		return (deprel, sp[0], sp[1])
+	elif len(sp) == 3:
+		return (sp[0], sp[1], sp[2])
 	else:
-		raise ValueError (f'Illegal value {token} (more than one "::")')
-	index = token.rfind("-")
-	if token == -1:
-		raise ValueError (f'Illegal value {token} (no hyphen)')
-	else:
-		return (rel, token[:index], token[index+1:])
-
+		raise ValueError (f'Illegal value {token} (one of two "::" expected)')
 
 def build_merged_corpus (corpus):
 	"""
