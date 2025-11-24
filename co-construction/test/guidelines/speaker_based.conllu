@@ -1,0 +1,50 @@
+# text = I saw a man
+# sent_id = s1
+# speaker_id = Peter
+1	I	_	PRON	_	_	2	nsubj	_	_
+2	saw	_	VERB	_	_	0	root	_	_
+3	a	_	DET	_	_	4	det	_	_
+4	man	_	NOUN	_	_	2	obj	_	_
+
+# text = who was wearing a hat
+# sent_id = s2
+# speaker_id = Maria
+1	who	_	SCONJ	_	_	3	nsubj	_	_
+2	was	_	AUX	_	_	3	aux	_	_
+3	wearing	_	VERB	_	_	0	root	_	Coconstruct=acl:relcl::s1::4
+4	a	_	DET	_	_	5	det	_	_
+5	hat	_	NOUN	_	_	3	obj	_	_
+
+# text = Sure
+# sent_id = s3
+# speaker_id = Peter
+1	Sure	_	INTJ	_	_	0	root	_	Backchannel=s2::3
+
+# text = I saw a man
+# sent_id = s4
+# speaker_id = Peter
+1	I	_	PRON	_	_	2	nsubj	_	_
+2	saw	_	VERB	_	_	0	root	_	_
+3	a	_	DET	_	_	4	det	_	_
+4	man	_	NOUN	_	_	2	obj	_	_
+
+# text = M-hm
+# sent_id = s5
+# speaker_id = Paul
+1	M-hm	_	INTJ	_	_	0	root	_	Backchannel=s4::3
+
+# text = who was wearing a hat
+# sent_id = s6
+# speaker_id = Maria
+1	who	_	SCONJ	_	_	3	nsubj	_	_
+2	was	_	AUX	_	_	3	aux	_	_
+3	wearing	_	VERB	_	_	0	root	_	Coconstruct=acl:relcl::s4::4
+4	a	_	DET	_	_	5	det	_	_
+5	hat	_	NOUN	_	_	3	obj	_	_
+
+# text = Sure
+# sent_id = s7
+# speaker_id = Peter
+1	Sure	_	INTJ	_	_	0	root	_	Backchannel=s6::3
+
+

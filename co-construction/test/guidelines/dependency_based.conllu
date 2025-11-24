@@ -1,0 +1,29 @@
+# text = I saw a man__who was wearing a hat__Sure
+# sent_id = s1__s2__s3
+# speaker_id = Peter__Maria__Peter
+1	I	_	PRON	_	_	2	nsubj	_	speaker_id=Peter
+2	saw	_	VERB	_	_	0	root	_	speaker_id=Peter
+3	a	_	DET	_	_	4	det	_	speaker_id=Peter
+4	man	_	NOUN	_	_	2	obj	_	speaker_id=Peter
+5	who	_	SCONJ	_	_	7	nsubj	_	speaker_id=Maria
+6	was	_	AUX	_	_	7	aux	_	speaker_id=Maria
+7	wearing	_	VERB	_	_	4	acl:relcl/attach	_	Coconstruct=Yes|speaker_id=Maria
+8	a	_	DET	_	_	9	det	_	speaker_id=Maria
+9	hat	_	NOUN	_	_	7	obj	_	speaker_id=Maria
+10	Sure	_	INTJ	_	_	7	discourse:backchannel/attach	_	Backchannel=Yes|speaker_id=Peter
+
+# text = I saw a man__who was wearing a hat__Sure__M-hm
+# sent_id = s4__s6__s7__s5
+# speaker_id = Peter__Maria__Peter__Paul
+1	I	_	PRON	_	_	2	nsubj	_	speaker_id=Peter
+2	saw	_	VERB	_	_	0	root	_	speaker_id=Peter
+3	a	_	DET	_	_	4	det	_	speaker_id=Peter
+4	man	_	NOUN	_	_	2	obj	_	speaker_id=Peter
+5	who	_	SCONJ	_	_	7	nsubj	_	speaker_id=Maria
+6	was	_	AUX	_	_	7	aux	_	speaker_id=Maria
+7	wearing	_	VERB	_	_	4	acl:relcl/attach	_	Coconstruct=Yes|speaker_id=Maria
+8	a	_	DET	_	_	9	det	_	speaker_id=Maria
+9	hat	_	NOUN	_	_	7	obj	_	speaker_id=Maria
+10	Sure	_	INTJ	_	_	7	discourse:backchannel/attach	_	Backchannel=Yes|speaker_id=Peter
+11	M-hm	_	INTJ	_	_	3	discourse:backchannel/attach	_	Backchannel=Yes|speaker_id=Paul
+
