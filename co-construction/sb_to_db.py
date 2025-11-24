@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, argparse
 from termcolor import colored, cprint
 
 from grewpy import set_config, CorpusDraft, Corpus, Request, Graph, GRS
@@ -138,6 +138,9 @@ def build_merged_corpus (corpus):
 	"""
 	occs_coconstruct = corpus.search (Request("pattern { X [Coconstruct]}"), clustering_keys=["X.Coconstruct"])
 	occs_backchannel = corpus.search (Request("pattern { X [Backchannel]}"), clustering_keys=["X.Backchannel"])
+	# If no occurrence is found, the output is an empty list, we turn it into a empty dict for further processing
+	if occs_coconstruct == []: occs_coconstruct = {}
+	if occs_backchannel == []: occs_backchannel = {}
 	occs_all = occs_coconstruct | occs_backchannel
 
 	# Compute the partition (list of list of sent_id) of sentences that should be "merged".
@@ -182,18 +185,25 @@ def build_merged_corpus (corpus):
 	final_corpus = grs.apply(Corpus(attach_corpus))
 	return (final_corpus)
 
-if __name__ == "__main__":
-	try:
-		set_config ("ud")
-		if len (sys.argv) < 3:
-			raise (ValueError ("Two arguments needed"))
-		input_corpus = Corpus (sys.argv[1])
-		# check_input_data(input_corpus)
-		output_corpus = build_merged_corpus (input_corpus)
-		with open(sys.argv[2], 'w') as f:
-			f.write (output_corpus.to_conll())
-		cprint (f"Merged from {len(input_corpus)} sentences to {len(output_corpus)}", "green")
-	except ValueError as msg:
-		cprint(f'Cannot process: {msg}', 'red')
-		exit (1)
+def main():
+		parser = argparse.ArgumentParser(description="speaker_based to dependency_based conversion")
+		parser.add_argument('input_file', type=str, help='Conllu file for input_corpus')
+		parser.add_argument('output_file', type=str, help='Conllu file produced')
+		parser.add_argument('--config', type=str, default='ud', help='configuration (ud or sud, default is ud)')
+		args = parser.parse_args()
 
+		try:
+			set_config(args.config)
+			input_corpus = Corpus (args.input_file)
+			# check_input_data(input_corpus)
+			output_corpus = build_merged_corpus (input_corpus)
+			with open(args.output_file, 'w') as f:
+				f.write (output_corpus.to_conll())
+			cprint (f"Merged from {len(input_corpus)} sentences to {len(output_corpus)}", "green")
+		except ValueError as msg:
+			cprint(f'Cannot process: {msg}', 'red')
+			exit (1)
+
+
+if __name__ == "__main__":
+		main()

@@ -32,7 +32,7 @@ rhapsodie:
 	for infile in SUD_French-Rhapsodie/*.conllu ; do \
 		outfile=`echo $$infile | sed "s+SUD_French-Rhapsodie/+SUD_French-Rhapsodie_db/+"` ; \
 		echo "$$infile --> $$outfile" ; \
-		python3 sb_to_db_rhapsodie.py $$infile $$outfile ; \
+		python3 sb_to_db.py --config sud $$infile $$outfile ; \
 	done
 
 kiparla:
