@@ -1,8 +1,6 @@
 # Metadata used in French-Rhapsodie
 
-See: https://universal.grew.fr/?corpus=SUD_French-Rhapsodie@audio
-
-Note that these metadata are not present in the (S)UD release of the treebank.
+See: https://universal.grew.fr/?corpus=SUD_French-Rhapsodie@2.17
 
 ## Keys with restricted set of possible values
  - `channel`
