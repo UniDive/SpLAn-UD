@@ -1,0 +1,18 @@
+# sent_id = Rhap_D2003-151__Rhap_D2003-152
+# speaker = L2__L3
+# speaker_id = §LM16__§LM17
+# text = mais ça continue de circuler avec…__et oui, Messi maintenant.
+1	mais	mais	CCONJ	_	_	3	cc	_	speaker_id=§LM16
+2	ça	ça	PRON	_	PronType=Dem	3	subj	_	Gender[lex]=Masc|Number[lex]=Sing|Person[lex]=3|speaker_id=§LM16
+3	continue	continuer	VERB	_	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	Number[ctxt]=Sing|Person[ctxt]=3|speaker_id=§LM16
+4	de	de	ADP	_	_	3	comp:obl	_	speaker_id=§LM16
+5	circuler	circuler	VERB	_	VerbForm=Inf	4	comp:obj	_	Overlap=Rhap_D2003-152|speaker_id=§LM16|Subject=NoRaising
+6	avec	avec	ADP	_	_	5	mod	_	Overlap=Rhap_D2003-152|SpaceAfter=No|speaker_id=§LM16
+7	…	…	PUNCT	_	_	3	punct	_	Overlap=Rhap_D2003-128ter|speaker_id=§LM16
+8	et	et	CCONJ	_	_	11	cc	_	Overlap=Rhap_D2003-151|speaker_id=§LM17
+9	oui	oui	INTJ	_	_	11	discourse	_	Overlap=Rhap_D2003-151|SpaceAfter=No|speaker_id=§LM17
+10	,	,	PUNCT	_	_	9	punct	_	Overlap=Rhap_D2003-128bis|speaker_id=§LM17
+11	Messi	Messi	PROPN	_	_	6	comp/attach	_	Coconstruct=Yes|Overlap=Rhap_D2003-151|speaker_id=§LM17
+12	maintenant	maintenant	ADV	_	_	11	mod	_	SpaceAfter=No|speaker_id=§LM17
+13	.	.	PUNCT	_	_	11	punct	_	speaker_id=§LM17
+

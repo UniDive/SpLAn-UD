@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with dep2pict -->
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="270.30078" height="141.68164">
+<rect x="0" y="0" width="270.30078" height="141.68164" style="fill:white;fill-opacity:0;" />
+<g  transform="translate(0,79.36719) scale(2,2)">
+<text id="word__N_0" x="27.3174" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="27.3174" dy="12.8633">__0__</tspan>
+</text>
+<text id="word__N_1" x="93.8926" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="93.8926" dy="12.8633">Sure</tspan>
+</text>
+<text id="subword__N_1" x="93.8926" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="93.8926" dy="8.33691">upos=INTJ</tspan>
+<tspan   x="93.8926" dy="8.33691">Backchannel=s2::3</tspan>
+</text>
+
+<marker id="markerendword_0" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_0__N_1__root" x="60.31738" y="-24.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >root</text>
+<path style="marker-end:url(#markerendword_0);" stroke="black" fill="none" d="M 27.31738,-13.40625 27.31738,-18.40625 A 3 3 0 0 1 30.31738,-21.40625 L 90.89258,-21.40625 A 3 3 0 0 1 93.89258,-18.40625 L 93.89258,-13.40625" ></path>
+
+
+</g>
+</svg>

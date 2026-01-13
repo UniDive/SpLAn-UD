@@ -9,13 +9,20 @@ self_doc:
 	@echo "make images (needs dep2pict)"
 	@echo "make rhapsodie (need a local [symlink to a] directory SUD_French-Rhapsodie)"
 
-run_test:
-	python3 sb_to_db_rhapsodie.py test/sb_test.conllu test/db_test.conllu
+run_test_guidelines:
+	python3 sb_to_db.py test/guidelines/speaker_based.conllu test/guidelines/dependency_based.conllu
 
-images: run_test
-	dep2pict_dev test/sb_test.conllu -p 1 test/sb_test_1.svg 
-	dep2pict_dev test/sb_test.conllu -p 2 test/sb_test_2.svg
-	dep2pict_dev test/db_test.conllu test/db_test.svg
+run_test_rhap:
+	python3 sb_to_db.py test/Rhapsodie/sb_test.conllu test/Rhapsodie/db_test.conllu
+
+images: run_test_guidelines run_test_rhap
+	dep2pict_dev test/guidelines/speaker_based.conllu -p 1 test/guidelines/speaker_based_1.svg 
+	dep2pict_dev test/guidelines/speaker_based.conllu -p 2 test/guidelines/speaker_based_2.svg
+	dep2pict_dev test/guidelines/speaker_based.conllu -p 3 test/guidelines/speaker_based_3.svg
+	dep2pict_dev test/guidelines/dependency_based.conllu test/guidelines/dependency_based.svg
+	dep2pict_dev test/Rhapsodie/sb_test.conllu -p 1 test/Rhapsodie/sb_test_1.svg 
+	dep2pict_dev test/Rhapsodie/sb_test.conllu -p 2 test/Rhapsodie/sb_test_2.svg
+	dep2pict_dev test/Rhapsodie/db_test.conllu test/Rhapsodie/db_test.svg
 
 pdf:
 	find test -name "*.svg" -type f -print | sed "s/.svg$$//" | xargs -I {} make "{}.pdf"
@@ -24,8 +31,8 @@ png:
 	find test -name "*.svg" -type f -print | sed "s/.svg$$//" | xargs -I {} make "{}.png"
 
 clean:
-	rm -f test/db_test.conllu
-	rm -f test/*.svg test/*.pdf test/*.png
+	rm -f test/*/*.svg test/*/*.pdf test/*/*.png
+	rm -f test/*/*.svg test/*/*.pdf test/*/*.png
 
 rhapsodie:
 	mkdir -p SUD_French-Rhapsodie_db
@@ -34,6 +41,9 @@ rhapsodie:
 		echo "$$infile --> $$outfile" ; \
 		python3 sb_to_db.py --config sud $$infile $$outfile ; \
 	done
+
+upload:
+	scp -o "ProxyJump guillaum@ssh-nge.inria.fr" SUD_French-Rhapsodie_db/*.conllu guillaum@grew-host.loria.fr:/home/guillaum/resources/SUD_French-Rhapsodie_db
 
 kiparla:
 	mkdir -p test/kiparla_db
@@ -44,5 +54,3 @@ guidelines:
 	python3 sb_to_db.py test/guidelines/speaker_based.conllu test/guidelines/dependency_based.conllu
 
 
-upload:
-	scp -o "ProxyJump guillaum@ssh-nge.inria.fr" SUD_French-Rhapsodie_db/*.conllu guillaum@grew-host.loria.fr:/home/guillaum/resources/SUD_French-Rhapsodie_db

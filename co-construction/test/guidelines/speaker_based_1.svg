@@ -1,0 +1,59 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with dep2pict -->
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="568.29492" height="145.00781">
+<rect x="0" y="0" width="568.29492" height="145.00781" style="fill:white;fill-opacity:0;" />
+<g  transform="translate(0,99.36719) scale(2,2)">
+<text id="word__N_0" x="27.3174" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="27.3174" dy="12.8633">__0__</tspan>
+</text>
+<text id="word__N_1" x="83.8694" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="83.8694" dy="12.8633">I</tspan>
+</text>
+<text id="subword__N_1" x="83.8694" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="83.8694" dy="8.33691">upos=PRON</tspan>
+</text>
+<text id="word__N_2" x="141.858" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="141.858" dy="12.8633">saw</tspan>
+</text>
+<text id="subword__N_2" x="141.858" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="141.858" dy="8.33691">upos=VERB</tspan>
+</text>
+<text id="word__N_3" x="196.952" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="196.952" dy="12.8633">a</tspan>
+</text>
+<text id="subword__N_3" x="196.952" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="196.952" dy="8.33691">upos=DET</tspan>
+</text>
+<text id="word__N_4" x="252.72" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="252.72" dy="12.8633">man</tspan>
+</text>
+<text id="subword__N_4" x="252.72" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="252.72" dy="8.33691">upos=NOUN</tspan>
+</text>
+
+<marker id="markerendword_1" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_2__N_1__nsubj" x="109.86938" y="-24.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >nsubj</text>
+<path style="marker-end:url(#markerendword_1);" stroke="black" fill="none" d="M 136.85840,-13.40625 136.85840,-18.40625 A 3 3 0 0 0 133.85840,-21.40625 L 86.86938,-21.40625 A 3 3 0 0 0 83.86938,-18.40625 L 83.86938,-13.40625" ></path>
+<marker id="markerendword_3" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_4__N_3__det" x="223.45239" y="-24.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >det</text>
+<path style="marker-end:url(#markerendword_3);" stroke="black" fill="none" d="M 250.21973,-13.40625 250.21973,-18.40625 A 3 3 0 0 0 247.21973,-21.40625 L 199.95239,-21.40625 A 3 3 0 0 0 196.95239,-18.40625 L 196.95239,-13.40625" ></path>
+<marker id="markerendword_0" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_0__N_2__root" x="84.31738" y="-34.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >root</text>
+<path style="marker-end:url(#markerendword_0);" stroke="black" fill="none" d="M 27.31738,-13.40625 27.31738,-28.40625 A 3 3 0 0 1 30.31738,-31.40625 L 138.85840,-31.40625 A 3 3 0 0 1 141.85840,-28.40625 L 141.85840,-13.40625" ></path>
+<marker id="markerendword_2" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_2__N_4__obj" x="200.85840" y="-34.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >obj</text>
+<path style="marker-end:url(#markerendword_2);" stroke="black" fill="none" d="M 146.85840,-13.40625 146.85840,-28.40625 A 3 3 0 0 1 149.85840,-31.40625 L 252.21973,-31.40625 A 3 3 0 0 1 255.21973,-28.40625 L 255.21973,-13.40625" ></path>
+
+
+</g>
+</svg>

@@ -1,0 +1,71 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with dep2pict -->
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="773.79980" height="181.68164">
+<rect x="0" y="0" width="773.79980" height="181.68164" style="fill:white;fill-opacity:0;" />
+<g  transform="translate(0,119.36719) scale(2,2)">
+<text id="word__N_0" x="27.3174" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="27.3174" dy="12.8633">__0__</tspan>
+</text>
+<text id="word__N_1" x="85.6348" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="85.6348" dy="12.8633">who</tspan>
+</text>
+<text id="subword__N_1" x="85.6348" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="85.6348" dy="8.33691">upos=SCONJ</tspan>
+</text>
+<text id="word__N_2" x="143.229" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="143.229" dy="12.8633">was</tspan>
+</text>
+<text id="subword__N_2" x="143.229" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="143.229" dy="8.33691">upos=AUX</tspan>
+</text>
+<text id="word__N_3" x="221.594" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="221.594" dy="12.8633">wearing</tspan>
+</text>
+<text id="subword__N_3" x="221.594" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="221.594" dy="8.33691">upos=VERB</tspan>
+<tspan   x="221.594" dy="8.33691">Coconstruct=acl:relcl::s1::4</tspan>
+</text>
+<text id="word__N_4" x="299.705" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="299.705" dy="12.8633">a</tspan>
+</text>
+<text id="subword__N_4" x="299.705" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="299.705" dy="8.33691">upos=DET</tspan>
+</text>
+<text id="word__N_5" x="355.472" y="-14.4062" font-style="normal" font-weight="normal" fill="black" font-size="12" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="355.472" dy="12.8633">hat</tspan>
+</text>
+<text id="subword__N_5" x="355.472" y="-1.54297" fill="black" font-size="7" font-family="Arial" text-anchor="middle" text-align="center">
+<tspan   x="355.472" dy="8.33691">upos=NOUN</tspan>
+</text>
+
+<marker id="markerendword_2" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_3__N_2__aux" x="178.22900" y="-24.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >aux</text>
+<path style="marker-end:url(#markerendword_2);" stroke="black" fill="none" d="M 214.09424,-13.40625 214.09424,-18.40625 A 3 3 0 0 0 211.09424,-21.40625 L 146.22900,-21.40625 A 3 3 0 0 0 143.22900,-18.40625 L 143.22900,-13.40625" ></path>
+<marker id="markerendword_4" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_5__N_4__det" x="326.20483" y="-24.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >det</text>
+<path style="marker-end:url(#markerendword_4);" stroke="black" fill="none" d="M 352.97217,-13.40625 352.97217,-18.40625 A 3 3 0 0 0 349.97217,-21.40625 L 302.70483,-21.40625 A 3 3 0 0 0 299.70483,-18.40625 L 299.70483,-13.40625" ></path>
+<marker id="markerendword_1" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_3__N_1__nsubj" x="152.13477" y="-34.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >nsubj</text>
+<path style="marker-end:url(#markerendword_1);" stroke="black" fill="none" d="M 219.09424,-13.40625 219.09424,-28.40625 A 3 3 0 0 0 216.09424,-31.40625 L 88.63477,-31.40625 A 3 3 0 0 0 85.63477,-28.40625 L 85.63477,-13.40625" ></path>
+<marker id="markerendword_3" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_3__N_5__obj" x="293.09424" y="-34.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >obj</text>
+<path style="marker-end:url(#markerendword_3);" stroke="black" fill="none" d="M 229.09424,-13.40625 229.09424,-28.40625 A 3 3 0 0 1 232.09424,-31.40625 L 354.97217,-31.40625 A 3 3 0 0 1 357.97217,-28.40625 L 357.97217,-13.40625" ></path>
+<marker id="markerendword_0" markerWidth="5" markerHeight="5" markerUnits="userSpaceOnUse" orient="auto" refX="2" refY="2">
+<path d="M0,0 l4,2 l-4,2 z" style="fill:black;"/>
+</marker>
+<text id="label__N_0__N_3__root" x="125.31738" y="-44.40625" style="fill:black;font-size:7px;font-family:Arial;text-anchor:middle;text-align:center" >root</text>
+<path style="marker-end:url(#markerendword_0);" stroke="black" fill="none" d="M 27.31738,-13.40625 27.31738,-38.40625 A 3 3 0 0 1 30.31738,-41.40625 L 221.09424,-41.40625 A 3 3 0 0 1 224.09424,-38.40625 L 224.09424,-13.40625" ></path>
+
+
+</g>
+</svg>
