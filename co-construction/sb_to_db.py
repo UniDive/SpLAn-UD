@@ -129,7 +129,7 @@ def parse_value (token, deprel="discourse:backchannel"):
 	elif len(sp) == 3:
 		return (sp[0], sp[1], sp[2])
 	else:
-		raise ValueError (f'Illegal value {token} (one of two "::" expected)')
+		raise ValueError (f'Illegal value {token} (one or two "::" expected)')
 
 def build_merged_corpus (corpus):
 	"""
@@ -184,6 +184,8 @@ def build_merged_corpus (corpus):
 	grs = GRS("attach.grs")
 	final_corpus = grs.apply(Corpus(attach_corpus))
 	return (final_corpus)
+
+
 
 def main():
 		parser = argparse.ArgumentParser(description="speaker_based to dependency_based conversion")

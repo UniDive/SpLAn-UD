@@ -1,14 +1,19 @@
 strat main { 
 	Seq (
-		Onf (attach_relation),
+		Onf (OBSOLETE_attach_relation),
 		Onf (move_root),
+		Onf (detect),
 		Onf (features),
+		Onf (promotion),
+		Onf (lift_implicit),
+		Onf (lift_explicit),
+		Onf (rm_feats),
 	)
 }
 
 % Move relation name from feature to edge
 % Rule specific to former Rhapsodie annotation, not used wih Kiparla
-rule attach_relation {
+rule OBSOLETE_attach_relation {
 	pattern {
 		e: X -[ATTACH]-> Y; 
 		Y[__MISC__Rel, AttachTo] 
@@ -25,10 +30,20 @@ rule attach_relation {
 % we have to move the root relation to have a tree in the end
 rule move_root {
 	pattern { e: ANCHOR -[1=root]-> X1; X2 -[type=attach]-> X1 }
+	without { X2 -[type=attach]-> X3 }
 	commands {
 		add_edge f: ANCHOR -> X2; 
 		f.label = e.label;
 		del_edge e;
+	}
+}
+
+% Slovenian SST
+rule detect { 
+	pattern { e: ANCHOR -[1=root]-> X1; f1: X2 -[type=attach]-> X1; f2: X2 -[type=attach]-> X3 }
+	commands {
+		f1.type = tocheck; 
+		f2.type = tocheck; 
 	}
 }
 
@@ -42,3 +57,120 @@ package features {
 		commands { X.Backchannel="Yes" }
 	}
 }
+
+package promotion {
+	rule direct {
+		pattern { 
+			X -[type=attach]-> Y;
+			p: X -> Z; Z[Promotion, Scrap];
+		}
+		commands {
+			add_edge e: Y -> Z;
+			e.1 = Z.Promotion;
+			e.type = attach;
+			del_feat Z.Scrap;
+		}
+	}
+}
+
+	% rule one {
+	% 	pattern { 
+	% 		X -[type=attach]-> Y;
+	% 		X -> X1;
+	% 		p: X1 -> Z; Z[Promotion];
+	% 	}
+	% 	commands {
+	% 		add_edge e: Y -> Z;
+	% 		e.1 = Z.Promotion;
+	% 		e.type = attach;
+	% 		p.type = prom;
+	% 		del_feat Z.Promotion;
+	% 	}
+	% }
+
+rule lift_implicit {
+  pattern {
+		X -[type=attach]-> Y; Y[Promotion]; % Y has be restored after promotion
+		Y[upos<>NOUN|VERB|ADJ|ADV];         % Y is a functional word
+		e: Y -> Z; Z[!Head];                % Z is dependent of Y with no explicit Head indication
+	}
+	without {  X -[type=lifted]-> Z; }
+	commands {
+		% lift up the dependency 
+		add_edge f: X -> Z;
+		f.label = e.label;
+		f.type = lifted;
+		% del_edge e;
+	}
+}
+
+rule lift_explicit {
+  pattern {
+		X -[type=attach]-> Y; Y[Promotion]; % Y has be restored after promotion
+		e: Y -> Z; Z[Head=Position];        % Z is dependent of Y with no explicit Head indication
+	}
+	commands {
+		% lift up the dependency 
+		add_edge f: X -> Z;
+		f.label = e.label;
+		f.type = lifted;
+		del_feat Z.Head;
+		% del_edge e;
+	}
+}
+
+package rm_feats {
+	rule rm_prom {
+		pattern { X[Promotion] }
+		commands { del_feat X.Promotion }
+	}
+	rule rm_head {
+		pattern { X[Head] }
+		commands { del_feat X.Head }
+	}
+
+rule mark_sb_dep {
+	pattern { 
+		e: X -[!type]-> Y;
+		Z$ -[type=attach|lifted]-> Y;
+	}
+	commands { e.type=sb }
+}
+
+}
+strat final {
+	Seq (
+		Onf (rel),
+		Onf (rm_type),
+	)
+}
+
+
+rule rel {
+	% Y has two governor: a new "attach" one and an old "X" --> remove the dep to X
+	pattern { 
+		e: X -[type=sb]-> Y;
+	}
+	commands { del_edge e }
+}
+
+rule rm_type {
+	pattern { 
+		e: X -[type=*]-> Y
+	}
+	commands { del_feat e.type }
+}
+
+
+% % Produce the final "valid" tree
+% package final {
+% 	rule attach {
+% 		pattern { e: X -[type=attach]-> Y }
+% 		commands { del_feat e.type }
+% 	}
+
+% 	rule prom {
+% 		pattern { e: X -[type=prom]-> Y }
+% 		commands { del_edge e }
+% 	}
+% }
