@@ -1,4 +1,5 @@
 import sys
+import argparse
 import json
 from pathlib import Path
 from conllup.conllup import readConlluFile, writeConlluFile
@@ -56,9 +57,20 @@ def unshare(in_folder, out_folder):
 			cprint(f"Error processing {conllu_file.name}: {type(e).__name__}: {e}", "red")
 
 if __name__ == "__main__":
-	if len(sys.argv) != 3:
-		cprint("Usage: python script.py <in_folder> <out_folder>", "red")
-		sys.exit(1)
+	parser = argparse.ArgumentParser(
+		description='''Process .conllu files in `in_folder` and extract "sharable" metadata dependencies.
+New files are stored in `out_folder`
+WARNING: existing files in `out_folder` will be overwritten''',
+    formatter_class=argparse.RawTextHelpFormatter)
+	parser.add_argument(
+		"in_folder",
+		help="Path to the folder containing input .conllu files"
+	)
+	parser.add_argument(
+		"out_folder",
+		help="Path to the folder for storing unshared .conllu files"
+	)
 
-	in_folder, out_folder = sys.argv[1], sys.argv[2]
-	unshare(in_folder, out_folder)
+	args = parser.parse_args()
+
+	unshare(args.in_folder, args.out_folder)

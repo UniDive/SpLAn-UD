@@ -1,4 +1,5 @@
 import sys
+import argparse
 import json
 from pathlib import Path
 from conllup.conllup import readConlluFile, writeConlluFile
@@ -78,6 +79,26 @@ def share(in_folder, out_folder):
 		json.dump(shared_metadata, fp, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
+	parser = argparse.ArgumentParser(
+		description='''Process .conllu files in `in_folder` and "share" metadata.
+Files produced in the `out_folder`:
+ - new .conllu files without the shared metadata
+ - a file `metadata.json` recording the found shared metadata
+WARNING: existing files in `out_folder` will be overwritten''',
+    formatter_class=argparse.RawTextHelpFormatter)
+	parser.add_argument(
+		"in_folder",
+		help="Path to the folder containing input .conllu files"
+	)
+	parser.add_argument(
+		"out_folder",
+		help="Path to the folder for storing unshared .conllu files"
+	)
+
+	args = parser.parse_args()
+
+	share(args.in_folder, args.out_folder)
+
 	if len(sys.argv) != 3:
 		cprint("Usage: python script.py <in_folder> <out_folder>", "red")
 		sys.exit(1)
