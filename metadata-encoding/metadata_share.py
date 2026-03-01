@@ -2,6 +2,7 @@ import sys
 import json
 from pathlib import Path
 from conllup.conllup import readConlluFile, writeConlluFile
+from termcolor import colored, cprint
 
 METADATA_DEPENDENCIES = {
 	"document_id": "sound_url",
@@ -48,7 +49,7 @@ def share(in_folder, out_folder):
 	out_path = Path(out_folder)
 
 	if not in_path.is_dir():
-		print(f"Error: '{in_folder}' is not a valid directory")
+		cprint(f"Error: '{in_folder}' is not a valid directory", "red")
 		sys.exit(1)
 
 	out_path.mkdir(parents=True, exist_ok=True)
@@ -66,11 +67,11 @@ def share(in_folder, out_folder):
 				share_conllu(shared_metadata, document_id, sentence)
 			writeConlluFile(out_file, conllu, overwrite=True)
 		except KeyError as e:
-			print(f"Error: Missing metadata in {document_file.name}: {e}")
+			cprint(f"Error: Missing metadata in {document_file.name}: {e}", "red")
 		except ValueError as e:
-			print(f"Error: Invalid metadata in {document_file.name}: {e}")
+			cprint(f"Error: Invalid metadata in {document_file.name}: {e}", "red")
 		except Exception as e:
-			print(f"Unexpected error processing {document_file.name}: {type(e).__name__}: {e}")
+			cprint(f"Unexpected error processing {document_file.name}: {type(e).__name__}: {e}", "red")
 
 	metadata_file = Path(out_folder) / "metadata.json"
 	with open(metadata_file, "w") as fp:
@@ -78,7 +79,7 @@ def share(in_folder, out_folder):
 
 if __name__ == "__main__":
 	if len(sys.argv) != 3:
-		print("Usage: python script.py <in_folder> <out_folder>")
+		cprint("Usage: python script.py <in_folder> <out_folder>", "red")
 		sys.exit(1)
 
 	in_folder, out_folder = sys.argv[1], sys.argv[2]

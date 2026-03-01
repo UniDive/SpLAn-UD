@@ -2,6 +2,7 @@ import sys
 import json
 from pathlib import Path
 from conllup.conllup import readConlluFile, writeConlluFile
+from termcolor import colored, cprint
 
 def expand(shared_meta, document_id, conllu):
 	"""Restore document-specific and derived metadata to a sentence."""
@@ -22,7 +23,7 @@ def unshare(in_folder, out_folder):
 	out_path = Path(out_folder)
 
 	if not in_path.is_dir():
-		print(f"Error: '{in_folder}' is not a valid directory")
+		cprint(f"Error: '{in_folder}' is not a valid directory", "red")
 		sys.exit(1)
 
 	out_path.mkdir(parents=True, exist_ok=True)
@@ -33,10 +34,10 @@ def unshare(in_folder, out_folder):
 		with open(metadata_file, encoding="utf-8") as meta_file:
 			shared_meta = json.load(meta_file)
 	except FileNotFoundError:
-		print(f"Error: metadata.json not found in {in_folder}")
+		cprint(f"Error: metadata.json not found in {in_folder}", "red")
 		sys.exit(1)
 	except json.JSONDecodeError as e:
-		print(f"Error: Invalid JSON in metadata.json: {e}")
+		cprint(f"Error: Invalid JSON in metadata.json: {e}", "red")
 		sys.exit(1)
 
 	# Process .conllu files
@@ -52,11 +53,11 @@ def unshare(in_folder, out_folder):
 				expand(shared_meta, document_id, sentence)
 			writeConlluFile(out_file, conllu, overwrite=True)
 		except Exception as e:
-			print(f"Error processing {conllu_file.name}: {type(e).__name__}: {e}")
+			cprint(f"Error processing {conllu_file.name}: {type(e).__name__}: {e}", "red")
 
 if __name__ == "__main__":
 	if len(sys.argv) != 3:
-		print("Usage: python script.py <in_folder> <out_folder>")
+		cprint("Usage: python script.py <in_folder> <out_folder>", "red")
 		sys.exit(1)
 
 	in_folder, out_folder = sys.argv[1], sys.argv[2]
