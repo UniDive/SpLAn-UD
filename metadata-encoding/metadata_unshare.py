@@ -3,9 +3,9 @@ import os
 import json
 from conllup.conllup import readConlluFile, writeConlluFile
 
-def expand(shared_meta, sample_id, conllu):
+def expand(shared_meta, document_id, conllu):
 	# Update conllu['metaJson'] with sample-specific metadata
-	sample_keys = shared_meta.get('sample_id', {}).get(sample_id, {})
+	sample_keys = shared_meta.get('document_id', {}).get(document_id, {})
 	conllu['metaJson'].update(sample_keys)
 
 	# Prepare to expand conllu['metaJson'] with additional metadata from shared_meta
@@ -38,13 +38,13 @@ def unshare(in_folder, out_folder):
 	# Process .conllu files
 	conllu_files = [f for f in os.listdir(in_folder) if f.endswith(".conllu")]
 	for sample in conllu_files:
-		sample_id = os.path.splitext(sample)[0]
+		document_id = os.path.splitext(sample)[0]
 		out_file = os.path.join(out_folder, sample)
 
 		try:
 			conllu = readConlluFile(os.path.join(in_folder, sample))
 			for sentence in conllu:
-				expand(shared_meta, sample_id, sentence)
+				expand(shared_meta, document_id, sentence)
 			writeConlluFile(out_file, conllu, overwrite=True)
 		except Exception as e:
 			print(f"Error processing {sample}: {e}")
