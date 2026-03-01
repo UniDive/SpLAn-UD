@@ -5,18 +5,13 @@ from pathlib import Path
 from conllup.conllup import readConlluFile, writeConlluFile
 from termcolor import colored, cprint
 
-METADATA_DEPENDENCIES = {
-	"document_id": "sound_url",
-	"speaker_id": "speaker_sex",
-}
-
-def share_conllu(shared_metadata, document_id, conllu):
+def share_conllu(shared_metadata, document_id, conllu, metadata_dependencies):
 	"""Extract and deduplicate metadata from a sentence."""
 	meta = conllu['metaJson']
 	meta["document_id"] = document_id
 	keys_to_delete = ["document_id"]
 
-	for main_key, sub_key in METADATA_DEPENDENCIES.items():
+	for main_key, sub_key in metadata_dependencies.items():
 		if main_key not in meta:
 			continue
 
@@ -44,7 +39,7 @@ def share_conllu(shared_metadata, document_id, conllu):
 	for key in keys_to_delete:
 		meta.pop(key, None)
 
-def share(in_folder, out_folder):
+def share(in_folder, out_folder, metadata_dependencies):
 	"""Process all .conllu files and extract shared metadata."""
 	in_path = Path(in_folder)
 	out_path = Path(out_folder)
@@ -65,7 +60,7 @@ def share(in_folder, out_folder):
 		try:
 			conllu = readConlluFile(document_file)
 			for sentence in conllu:
-				share_conllu(shared_metadata, document_id, sentence)
+				share_conllu(shared_metadata, document_id, sentence, metadata_dependencies)
 			writeConlluFile(out_file, conllu, overwrite=True)
 		except KeyError as e:
 			cprint(f"Error: Missing metadata in {document_file.name}: {e}", "red")
@@ -92,16 +87,13 @@ WARNING: existing files in `out_folder` will be overwritten''',
 	)
 	parser.add_argument(
 		"out_folder",
-		help="Path to the folder for storing unshared .conllu files"
+		help="JSON file (str to str dict), describing deps to shared"
 	)
 
+	parser.add_argument ('--deps', '-d', type=str, required=True)
 	args = parser.parse_args()
 
-	share(args.in_folder, args.out_folder)
+	with open(args.deps, encoding="utf-8") as f:
+		metadata_dependencies = json.load(f)
 
-	if len(sys.argv) != 3:
-		cprint("Usage: python script.py <in_folder> <out_folder>", "red")
-		sys.exit(1)
-
-	in_folder, out_folder = sys.argv[1], sys.argv[2]
-	share(in_folder, out_folder)
+	share(args.in_folder, args.out_folder, metadata_dependencies)
