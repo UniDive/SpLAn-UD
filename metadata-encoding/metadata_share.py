@@ -1,70 +1,85 @@
 import sys
-import os
 import json
+from pathlib import Path
 from conllup.conllup import readConlluFile, writeConlluFile
 
-metadata_dependencies = {
-	# main_key: sub_key
+METADATA_DEPENDENCIES = {
 	"document_id": "sound_url",
 	"speaker_id": "speaker_sex",
 }
 
-
 def share_conllu(shared_metadata, document_id, conllu):
-
-	conllu['metaJson']["document_id"] = document_id
+	"""Extract and deduplicate metadata from a sentence."""
+	meta = conllu['metaJson']
+	meta["document_id"] = document_id
 	keys_to_delete = ["document_id"]
-	for key, value in conllu['metaJson'].items():
-		if key in metadata_dependencies:
-			main_key = key
-			sub_key = metadata_dependencies[key]
-			main_value = conllu['metaJson'][main_key] # TODO: handle Keyerror
-			sub_value = conllu['metaJson'][sub_key] # TODO: handle Keyerror
 
-			sub_dict = shared_metadata.get(main_key,dict())
-			subsub_dict = sub_dict.get(main_value, dict())
-			if sub_key in subsub_dict:
-				if subsub_dict[sub_key] != sub_value:
-					raise (ValueError ("Ambiguous"))
-			subsub_dict[sub_key] = sub_value
-			sub_dict[main_value] = subsub_dict
-			shared_metadata[main_key] = sub_dict
-			keys_to_delete.append(sub_key)
+	for main_key, sub_key in METADATA_DEPENDENCIES.items():
+		if main_key not in meta:
+			continue
+
+		main_value = meta[main_key]
+		sub_value = meta.get(sub_key)
+
+		if sub_value is None:
+			raise KeyError(f"Missing '{sub_key}' when '{main_key}' is present")
+
+		# Navigate nested dictionary
+		sub_dict = shared_metadata.setdefault(main_key, {})
+		subsub_dict = sub_dict.setdefault(main_value, {})
+
+		# Check for conflicts
+		if sub_key in subsub_dict and subsub_dict[sub_key] != sub_value:
+			raise ValueError(
+				f"Conflicting values for {main_key}={main_value}, {sub_key}: "
+				f"{subsub_dict[sub_key]} vs {sub_value}"
+			)
+
+		subsub_dict[sub_key] = sub_value
+		keys_to_delete.append(sub_key)
+
+	# Remove deduplicated keys from individual files
 	for key in keys_to_delete:
-		del conllu['metaJson'][key]
+		meta.pop(key, None)
 
 def share(in_folder, out_folder):
-	shared_metadata = dict()
+	"""Process all .conllu files and extract shared metadata."""
+	in_path = Path(in_folder)
+	out_path = Path(out_folder)
 
-	if not os.path.isdir(in_folder):
-		print(f"Arg 1 ({in_folder}) is not a folder")
+	if not in_path.is_dir():
+		print(f"Error: '{in_folder}' is not a valid directory")
 		sys.exit(1)
 
-	os.makedirs(out_folder, exist_ok=True)
+	out_path.mkdir(parents=True, exist_ok=True)
+	shared_metadata = {}
 
-	# Process .conllu files
-	document_files = [f for f in os.listdir(in_folder) if f.endswith(".conllu")]
+	document_files = sorted(in_path.glob("*.conllu"))
 
 	for document_file in document_files:
-		document_id = os.path.splitext(document_file)[0]
-		out_file = os.path.join(out_folder, document_file)
+		document_id = document_file.stem
+		out_file = out_path / document_file.name
 
 		try:
-			conllu = readConlluFile(os.path.join(in_folder, document_file))
+			conllu = readConlluFile(document_file)
 			for sentence in conllu:
 				share_conllu(shared_metadata, document_id, sentence)
 			writeConlluFile(out_file, conllu, overwrite=True)
+		except KeyError as e:
+			print(f"Error: Missing metadata in {document_file.name}: {e}")
+		except ValueError as e:
+			print(f"Error: Invalid metadata in {document_file.name}: {e}")
 		except Exception as e:
-			print(f"Error processing {document_file}: {e}")
-	return (shared_metadata)
+			print(f"Unexpected error processing {document_file.name}: {type(e).__name__}: {e}")
+
+	metadata_file = Path(out_folder) / "metadata.json"
+	with open(metadata_file, "w") as fp:
+		json.dump(shared_metadata, fp, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
 	if len(sys.argv) != 3:
-		print("Expect two args: in_folder, out_folder")
+		print("Usage: python script.py <in_folder> <out_folder>")
 		sys.exit(1)
 
 	in_folder, out_folder = sys.argv[1], sys.argv[2]
-	shared_metadata = share(in_folder, out_folder)
-
-	with open(os.path.join(out_folder,"metadata.json"), "w") as fp:
-		json.dump(shared_metadata, fp, indent=2)
+	share(in_folder, out_folder)
