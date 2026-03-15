@@ -11,7 +11,7 @@ def share_conllu(shared_metadata, document_id, conllu, metadata_dependencies):
 	meta["document_id"] = document_id
 	keys_to_delete = ["document_id"]
 
-	for main_key, sub_key in metadata_dependencies.items():
+	for sub_key, main_key in metadata_dependencies.items():
 		if main_key not in meta:
 			continue
 
@@ -19,7 +19,8 @@ def share_conllu(shared_metadata, document_id, conllu, metadata_dependencies):
 		sub_value = meta.get(sub_key)
 
 		if sub_value is None:
-			raise KeyError(f"Missing '{sub_key}' when '{main_key}' is present")
+			cprint (f"***WARNING: Missing '{sub_key}' when '{main_key}' is present ({meta.get('sent_id','__NO_SENT_ID__')})", "blue")
+			# raise KeyError(f"Missing '{sub_key}' when '{main_key}' is present")
 
 		# Navigate nested dictionary
 		sub_dict = shared_metadata.setdefault(main_key, {})
@@ -29,10 +30,12 @@ def share_conllu(shared_metadata, document_id, conllu, metadata_dependencies):
 		if sub_key in subsub_dict and subsub_dict[sub_key] != sub_value:
 			raise ValueError(
 				f"Conflicting values for {main_key}={main_value}, {sub_key}: "
-				f"{subsub_dict[sub_key]} vs {sub_value}"
+				f"{subsub_dict[sub_key]} VS {sub_value}"
 			)
 
-		subsub_dict[sub_key] = sub_value
+		if sub_value: # Do not store if the value is `None``
+			subsub_dict[sub_key] = sub_value
+
 		keys_to_delete.append(sub_key)
 
 	# Remove deduplicated keys from individual files
