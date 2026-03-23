@@ -12,9 +12,9 @@ if len(sys.argv) < 3:
 source_path = sys.argv[1]
 destination_path = sys.argv[2]
 
-spoken_only = [x.strip() for x in open("spoken_only.txt", "r", encoding="utf-8").readlines()]
+spoken_only = [x.strip() for x in open("spoken_only.txt", "r", encoding="utf-8").readlines() if not x.startswith('#')]
 
-spoken_subset = [x.strip().split("\t") for x in open("spoken_subset.txt", "r", encoding="utf-8").readlines()]
+spoken_subset = [x.strip().split("\t") for x in open("spoken_subset.txt", "r", encoding="utf-8").readlines() if not x.startswith('#')]
 
 
 for treebank in spoken_only:

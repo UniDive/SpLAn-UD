@@ -23,3 +23,8 @@ def UD_Scottish_Gaelic_ARCOSG(meta):
 
 def UD_Western_Sierra_Puebla_Nahuatl_ITML(meta):
 	return "Frog_Story" in meta["sent_id"]
+
+
+# In Zaar treebank, 3 samples are read text and not spontaneous speech
+def UD_Zaar_Autogramm(meta):
+	return not (meta["sent_id"].startswith("READ"))
