@@ -204,21 +204,24 @@ def main():
 		parser.add_argument('--config', type=str, default='ud', help='configuration (ud or sud, default is ud)')
 		args = parser.parse_args()
 
+		current_file = None
 		try:
 			set_config(args.config)
 			input_path = Path(args.input)
 			output_path = Path(args.output)
 			if input_path.is_file():
+				current_file = input_path.name
 				convert_file(input_path, output_path)
 			elif input_path.is_dir():
 				output_path.mkdir(exist_ok=True)
 				for input_file in input_path.glob('*.conllu'):
+					current_file = input_file.name
 					output_file = output_path / input_file.name
 					convert_file(input_file, output_file)
 			else:
 				raise (ValueError (f"unexpected arg `{input_path}`. Please give a file or a folder"))
 		except ValueError as msg:
-			cprint(f'Cannot process: {msg}', 'red', file=sys.stderr)
+			cprint(f'Cannot process: {msg} {"in: " + current_file if current_file else ""}', 'red', file=sys.stderr)
 			exit (1)
 
 if __name__ == "__main__":
