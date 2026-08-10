@@ -1,8 +1,10 @@
-import os, sys, argparse
+import sys, argparse
 from termcolor import colored, cprint
+from pathlib import Path
 
 from grewpy import set_config, CorpusDraft, Corpus, Request, Graph, GRS
 from grewpy.graph import FsEdge
+
 
 def short_concat (s1,s2):
 	"""
@@ -94,11 +96,11 @@ def check_input_data(corpus):
 		valid = True
 		if len(occs) > 0:
 			if valid:
-				cprint ('Cannot process data, there are inconsistent annotations:', 'red')
+				cprint ('Cannot process data, there are inconsistent annotations:', 'red', file=sys.stderr)
 			valid = False
-			cprint (f'{len(occs)} times the unexpected request ---> {string_request}', 'red')
+			cprint (f'{len(occs)} times the unexpected request ---> {string_request}', 'red', file=sys.stderr)
 			for occ in occs:
-				cprint (f'  - {occ["sent_id"]}', 'red')
+				cprint (f'  - {occ["sent_id"]}', 'red', file=sys.stderr)
 		if not valid:
 			exit (1)
 
@@ -181,31 +183,43 @@ def build_merged_corpus (corpus):
 			attach_corpus[merged_graph.meta["sent_id"]] = merged_graph
 
 	# A GRS is used to move the deprel annotation from the feature Rel to the edge.
-	grs = GRS("attach.grs")
+	base_dir = Path(__file__).resolve().parent
+	grs = GRS(str(Path(base_dir) / "attach.grs")) # str is needed because grewpy expect a string --> need to be changed in grewpy
 	final_corpus = grs.apply(Corpus(attach_corpus))
 	return (final_corpus)
 
+def convert_file(input_file, output_file):
+	input_corpus = Corpus (str(input_file)) # str is needed because grewpy expect a string --> need to be changed in grewpy
+	# check_input_data(input_corpus)
+	output_corpus = build_merged_corpus (input_corpus)
+	with open(output_file, 'w') as f:
+		f.write (output_corpus.to_conll())
+	cprint (f"Merged from {len(input_corpus)} sentences to {len(output_corpus)} in {input_file.name}", "green")
 
 
 def main():
 		parser = argparse.ArgumentParser(description="speaker_based to dependency_based conversion")
-		parser.add_argument('input_file', type=str, help='Conllu file for input_corpus')
-		parser.add_argument('output_file', type=str, help='Conllu file produced')
+		parser.add_argument('input', type=str, help='Conllu file or folder for input_corpus')
+		parser.add_argument('output', type=str, help='file or folder for Conllu file(s) produced')
 		parser.add_argument('--config', type=str, default='ud', help='configuration (ud or sud, default is ud)')
 		args = parser.parse_args()
 
 		try:
 			set_config(args.config)
-			input_corpus = Corpus (args.input_file)
-			# check_input_data(input_corpus)
-			output_corpus = build_merged_corpus (input_corpus)
-			with open(args.output_file, 'w') as f:
-				f.write (output_corpus.to_conll())
-			cprint (f"Merged from {len(input_corpus)} sentences to {len(output_corpus)}", "green")
+			input_path = Path(args.input)
+			output_path = Path(args.output)
+			if input_path.is_file():
+				convert_file(input_path, output_path)
+			elif input_path.is_dir():
+				output_path.mkdir(exist_ok=True)
+				for input_file in input_path.glob('*.conllu'):
+					output_file = output_path / input_file.name
+					convert_file(input_file, output_file)
+			else:
+				raise (ValueError (f"unexpected arg `{input_path}`. Please give a file or a folder"))
 		except ValueError as msg:
-			cprint(f'Cannot process: {msg}', 'red')
+			cprint(f'Cannot process: {msg}', 'red', file=sys.stderr)
 			exit (1)
-
 
 if __name__ == "__main__":
 		main()
