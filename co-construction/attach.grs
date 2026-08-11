@@ -1,4 +1,4 @@
-strat main { 
+strat dbi { 
 	Seq (
 		Onf (move_root),
 		Onf (detect),
@@ -7,6 +7,13 @@ strat main {
 		Onf (lift_implicit),
 		Onf (lift_explicit),
 		Onf (rm_feats),
+	)
+}
+
+strat db { 
+	Seq (
+		dbi,
+		final,
 	)
 }
 
@@ -129,7 +136,6 @@ strat final {
 	)
 }
 
-
 rule rel {
 	% Y has two governor: a new "attach" one and an old "X" --> remove the dep to X
 	pattern { 
@@ -145,16 +151,3 @@ rule rm_type {
 	commands { del_feat e.type }
 }
 
-
-% % Produce the final "valid" tree
-% package final {
-% 	rule attach {
-% 		pattern { e: X -[type=attach]-> Y }
-% 		commands { del_feat e.type }
-% 	}
-
-% 	rule prom {
-% 		pattern { e: X -[type=prom]-> Y }
-% 		commands { del_edge e }
-% 	}
-% }

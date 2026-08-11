@@ -26,6 +26,8 @@ def merge_dictionaries_with_concat(metadata_1, metadata_2):
 		if key in merged_metadata:
 			if key == "##MWT_MISC##": # Special encoding in Grew of features on MWT
 				merged_metadata[key] = f'{merged_metadata[key]}||{value}'
+			elif key == "text":
+				merged_metadata[key] = f'{merged_metadata[key]} {value}'
 			else:
 				merged_metadata[key] = short_concat(merged_metadata[key], value)
 		else:
@@ -133,7 +135,7 @@ def parse_value (token, deprel="discourse:backchannel"):
 	else:
 		raise ValueError (f'Illegal value {token} (one or two "::" expected)')
 
-def build_merged_corpus (corpus):
+def build_merged_corpus (corpus, grs, strat):
 	"""
 	Main function that turns an input [corpus] into a new corpus with the same data 
 	but with "Coconstruct/Backchannel" merged in one graph.
@@ -182,16 +184,13 @@ def build_merged_corpus (corpus):
 
 			attach_corpus[merged_graph.meta["sent_id"]] = merged_graph
 
-	# A GRS is used to move the deprel annotation from the feature Rel to the edge.
-	base_dir = Path(__file__).resolve().parent
-	grs = GRS(str(Path(base_dir) / "attach.grs")) # str is needed because grewpy expect a string --> need to be changed in grewpy
-	final_corpus = grs.apply(Corpus(attach_corpus))
+	final_corpus = grs.apply(Corpus(attach_corpus), strat=strat)
 	return (final_corpus)
 
-def convert_file(input_file, output_file):
+def convert_file(input_file, output_file, grs, strat):
 	input_corpus = Corpus (str(input_file)) # str is needed because grewpy expect a string --> need to be changed in grewpy
 	# check_input_data(input_corpus)
-	output_corpus = build_merged_corpus (input_corpus)
+	output_corpus = build_merged_corpus (input_corpus, grs, strat)
 	with open(output_file, 'w') as f:
 		f.write (output_corpus.to_conll())
 	cprint (f"Merged from {len(input_corpus)} sentences to {len(output_corpus)} in {input_file.name}", "green")
@@ -201,8 +200,13 @@ def main():
 		parser = argparse.ArgumentParser(description="speaker_based to dependency_based conversion")
 		parser.add_argument('input', type=str, help='Conllu file or folder for input_corpus')
 		parser.add_argument('output', type=str, help='file or folder for Conllu file(s) produced')
+		parser.add_argument('--strat', type=str, default='db', help='dbi for intermediate repr, db for final')
 		parser.add_argument('--config', type=str, default='ud', help='configuration (ud or sud, default is ud)')
 		args = parser.parse_args()
+
+		# A GRS is used to move the deprel annotation from the feature Rel to the edge.
+		base_dir = Path(__file__).resolve().parent
+		grs = GRS(str(Path(base_dir) / "attach.grs")) # str is needed because grewpy expect a string --> need to be changed in grewpy
 
 		current_file = None
 		try:
@@ -211,13 +215,13 @@ def main():
 			output_path = Path(args.output)
 			if input_path.is_file():
 				current_file = input_path.name
-				convert_file(input_path, output_path)
+				convert_file(input_path, output_path, grs, args.strat)
 			elif input_path.is_dir():
 				output_path.mkdir(exist_ok=True)
 				for input_file in input_path.glob('*.conllu'):
 					current_file = input_file.name
 					output_file = output_path / input_file.name
-					convert_file(input_file, output_file)
+					convert_file(input_file, output_file, grs, args.strat)
 			else:
 				raise (ValueError (f"unexpected arg `{input_path}`. Please give a file or a folder"))
 		except ValueError as msg:
