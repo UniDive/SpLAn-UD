@@ -97,7 +97,7 @@ def output_dot(equivalence, dependencies):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(
-		description='Process .conllu files and extract "sharable" metadata dependencies.',
+		description='Process .conllu files and extract "shareable" metadata dependencies.',
     formatter_class=argparse.RawTextHelpFormatter)
 	parser.add_argument(
 		"in_folder",
