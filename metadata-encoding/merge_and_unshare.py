@@ -3,12 +3,17 @@ SCRIPT DESCRIPTION:
 This script reorganizes CoNLL-U formatted linguistic data based on a JSON merge 
 configuration file. It reads sentence and document data from individual .conllu files, 
 then combines them into new output files according to the groupings specified in a 
-smergeplit.json configuration file. This is used for creating different train/test/dev 
-UD expected splits.
+`split.json` configuration file. This is used for creating the train/test/dev 
+UD expected split.
+
+If the file `metadata.json` is present in the `original_split` folder, it is taken into
+account for producing the final split.
+
+More info: https://grew.fr/spoken-language-guidelines/workgroups/spoken-data/treebank_structure.html
 
 TODO:
  - add safety checks for unknown document_id or sent_id
- - add error in case of missing/ducplicate sentences in the new corpora (check that the two "set of sent_ids" before/after merge is identical)
+ - add error in case of missing/duplicate sentences in the new corpora (check that the two "set of sent_ids" before/after merge is identical)
 """
 
 import sys
