@@ -155,6 +155,8 @@ def build_merged_corpus (corpus, grs, strat):
 		for src_sent in occs:
 			merge_classes_by_element(partition, src_sent["sent_id"], tar_sent_id)
 
+	sent_id_pos = {sent: i for i, sent in enumerate(corpus)}
+
 	# Build the new corpus with fake "ATTACH" links
 	attach_corpus = CorpusDraft()
 	for eq_class in partition:
@@ -163,6 +165,9 @@ def build_merged_corpus (corpus, grs, strat):
 			single_graph = corpus[single_sent_id]
 			attach_corpus[single_sent_id] = single_graph
 		else:
+			# Make sure that sentence order is restected inside each equivalent class 
+			# (this is not ensured by construction)
+			eq_class.sort (key=lambda id: sent_id_pos[id])
 			graphs = [meta_to_tokens (corpus[sent_id], "speaker_id") for sent_id in eq_class]
 			merged_graph = merge_list_graph (graphs)
 
